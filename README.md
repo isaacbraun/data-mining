@@ -13,3 +13,8 @@ venv-a
 ```bash
 pip install -r requirements.txt
 ```
+
+### Write requirements:
+```bash
+pip freeze > requirements.txt
+```
