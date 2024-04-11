@@ -1,0 +1,672 @@
+# Code Of Conduct {#code-of-conduct}
+
+## Our Pledge {#our-pledge}
+
+In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, political party, or sexual identity and orientation. Note, however, that religion, political party, or other ideological affiliation provide no exemptions for the behavior we outline as unacceptable in this Code of Conduct.
+
+## Our Standards {#our-standards}
+
+Examples of behavior that contributes to creating a positive environment include:
+
+- Using welcoming and inclusive language
+- Being respectful of differing viewpoints and experiences
+- Gracefully accepting constructive criticism
+- Focusing on what is best for the community
+- Showing empathy towards other community members
+
+Examples of unacceptable behavior by participants include:
+
+- The use of sexualized language or imagery and unwelcome sexual attention or advances
+- Trolling, insulting/derogatory comments, and personal or political attacks
+- Public or private harassment
+- Publishing others' private information, such as a physical or electronic address, without explicit permission
+- Other conduct which could reasonably be considered inappropriate in a professional setting
+
+## Our Responsibilities {#our-responsibilities}
+
+Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
+
+Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
+
+## Scope {#scope}
+
+This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
+
+## Enforcement {#enforcement}
+
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at community@vuejs.org. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
+
+Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
+
+## Attribution {#attribution}
+
+This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4, available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
+
+For answers to common questions about this code of conduct, see https://www.contributor-covenant.org/faq
+
+[homepage]: https://www.contributor-covenant.org
+# Community Guide {#community-guide}
+
+Vue's community is growing incredibly fast and if you're reading this, there's a good chance you're ready to join it. So... welcome!
+
+Now we'll answer both what the community can do for you and what you can do for the community.
+
+## Resources {#resources}
+
+### Code of Conduct {#code-of-conduct}
+
+Our [Code of Conduct](/about/coc) is a guide to make it easier to enrich all of us and the technical communities in which we participate.
+
+### Stay in the Know {#stay-in-the-know}
+
+- Follow our [official Twitter account](https://twitter.com/vuejs).
+- Follow our [team members](./team) on Twitter or GitHub.
+- Follow the [RFC discussions](https://github.com/vuejs/rfcs).
+- Subscribe to the [official blog](https://blog.vuejs.org/).
+
+### Get Support {#get-support}
+
+- [Discord Chat](https://discord.com/invite/vue): A place for Vue devs to meet and chat in real time.
+- [Forum](https://forum.vuejs.org/): The best place to ask questions and get answers about Vue and its ecosystem.
+- [DEV Community](https://dev.to/t/vue): Share and discuss Vue related topics on Dev.to.
+- [Meetups](https://events.vuejs.org/meetups): Want to find local Vue enthusiasts like yourself? Interested in becoming a community leader? We have the help and support you need right here!
+- [GitHub](https://github.com/vuejs): If you have a bug to report or feature to request, that's what the GitHub issues are for. Please respect the rules specified in each repository's issue template.
+- [Twitter Community (unofficial)](https://twitter.com/i/communities/1516368750634840064): A Twitter community, where you can meet other Vue enthusiasts, get help, or just chat about Vue.
+
+### Explore the Ecosystem {#explore-the-ecosystem}
+
+- [The Awesome Vue Page](https://github.com/vuejs/awesome-vue): See what other awesome resources have been published by other awesome people.
+- [Vue Telescope Explorer](https://vuetelescope.com/explore): Explore websites made with Vue, with insights on what framework / libraries they use.
+- [Made with Vue.js](https://madewithvuejs.com/): showcases of projects and libraries made with Vue.
+- [The "Show and Tell" Subforum](https://github.com/vuejs/core/discussions/categories/show-and-tell): Another great place to check out what others have built with and for the growing Vue ecosystem.
+
+## What You Can Do {#what-you-can-do}
+
+### Help Fellow Users {#help-fellow-users}
+
+Code contribution is not the only form of contribution to the Vue community. Answering a question for a fellow Vue user on Discord or the forum is also considered a valuable contribution.
+
+### Help Triage Issues {#help-triage-issues}
+
+Triaging an issue means gathering missing information, running the reproduction, verifying the issue's validity, and investigating the cause of the issue.
+
+We receive many issues in [our repositories on GitHub](https://github.com/vuejs) every single day. Our bandwidth is limited compared to the amount of users we have, so issue triaging alone can take an enormous amount of effort from the team. By helping us triage the issues, you are helping us become more efficient, allowing us to spend time on higher priority work.
+
+You don't have to triage an issue with the goal of fixing it (although that would be nice too). Sharing the result of your investigation, for example the commit that led to the bug, can already save us a ton of time.
+
+### Contribute Code {#contribute-code}
+
+Contributing bug fixes or new features is the most direct form of contribution you can make.
+
+The Vue core repository provides a [contributing guide](https://github.com/vuejs/core/blob/main/.github/contributing.md), which contains pull request guidelines and information regarding build setup and high-level architecture. Other sub-project repositories may also contain its own contribution guide - please make sure to read them before submitting pull requests.
+
+Bug fixes are welcome at any time. For new features, it is best to discuss the use case and implementation details first in the [RFC repo](https://github.com/vuejs/rfcs/discussions).
+
+### Share (and Build) Your Experience {#share-and-build-your-experience}
+
+# Frequently Asked Questions {#frequently-asked-questions}
+
+## Who maintains Vue? {#who-maintains-vue}
+
+Vue is an independent, community-driven project. It was created by [Evan You](https://twitter.com/youyuxi) in 2014 as a personal side project. Today, Vue is actively maintained by [a team of both full-time and volunteer members from all around the world](/about/team), where Evan serves as the project lead. You can learn more about the story of Vue in this [documentary](https://www.youtube.com/watch?v=OrxmtDw4pVI).
+
+Vue's development is primarily funded through sponsorships and we have been financially sustainable since 2016. If you or your business benefit from Vue, consider [sponsoring us](/sponsor/) to support Vue's development!
+
+## What's the difference between Vue 2 and Vue 3? {#what-s-the-difference-between-vue-2-and-vue-3}
+
+Vue 3 is the current, latest major version of Vue. It contains new features that are not present in Vue 2, such as Teleport, Suspense, and multiple root elements per template. It also contains breaking changes that make it incompatible with Vue 2. Full details are documented in the [Vue 3 Migration Guide](https://v3-migration.vuejs.org/).
+
+Despite the differences, the majority of Vue APIs are shared between the two major versions, so most of your Vue 2 knowledge will continue to work in Vue 3. Notably, Composition API was originally a Vue-3-only feature, but has now been backported to Vue 2 and is available in [Vue 2.7](https://github.com/vuejs/vue/blob/main/CHANGELOG.md#270-2022-07-01).
+
+In general, Vue 3 provides smaller bundle sizes, better performance, better scalability, and better TypeScript / IDE support. If you are starting a new project today, Vue 3 is the recommended choice. There are only a few reasons for you to consider Vue 2 as of now:
+
+- You need to support IE11. Vue 3 leverages modern JavaScript features and does not support IE11.
+
+If you intend to migrate an existing Vue 2 app to Vue 3, consult the [migration guide](https://v3-migration.vuejs.org/).
+
+## Is Vue 2 Still Supported? {#is-vue-2-still-supported}
+
+Vue 2.7, which was shipped in July 2022, is the final minor release of the Vue 2 version range. Vue 2 has now entered maintenance mode: it will no longer ship new features, but will continue to receive critical bug fixes and security updates for 18 months starting from the 2.7 release date. This means **Vue 2 will reach End of Life on December 31st, 2023**.
+
+We believe this should provide plenty of time for most of the ecosystem to migrate over to Vue 3. However, we also understand that there could be teams or projects that cannot upgrade by this timeline while still needing to fulfill security and compliance requirements. We are partnering with industry experts to provide extended support for Vue 2 for teams with such needs - if your team expects to be using Vue 2 beyond the end of 2023, make sure to plan ahead and learn more about [Vue 2 Extended LTS](https://v2.vuejs.org/lts/).
+
+## What license does Vue use? {#what-license-does-vue-use}
+
+Vue is a free and open source project released under the [MIT License](https://opensource.org/licenses/MIT).
+
+## What browsers does Vue support? {#what-browsers-does-vue-support}
+
+The latest version of Vue (3.x) only supports [browsers with native ES2015 support](https://caniuse.com/es6). This excludes IE11. Vue 3.x uses ES2015 features that cannot be polyfilled in legacy browsers, so if you need to support legacy browsers, you will need to use Vue 2.x instead.
+
+## Is Vue reliable? {#is-vue-reliable}
+
+Vue is a mature and battle-tested framework. It is one of the most widely used JavaScript frameworks in production today, with over 1.5 million users worldwide, and is downloaded close to 10 million times a month on npm.
+
+Vue is used in production by renowned organizations in varying capacities all around the world, including Wikimedia Foundation, NASA, Apple, Google, Microsoft, GitLab, Zoom, Tencent, Weibo, Bilibili, Kuaishou, and many more.
+
+## Is Vue fast? {#is-vue-fast}
+
+Vue 3 is one of the most performant mainstream frontend frameworks, and handles most web application use cases with ease, without the need for manual optimizations.
+
+In stress-testing scenarios, Vue outperforms React and Angular by a decent margin in the [js-framework-benchmark](https://krausest.github.io/js-framework-benchmark/current.html). It also goes neck-and-neck against some of the fastest production-level non-Virtual-DOM frameworks in the benchmark.
+
+Do note that synthetic benchmarks like the above focus on raw rendering performance with dedicated optimizations and may not be fully representative of real-world performance results. If you care more about page load performance, you are welcome to audit this very website using [WebPageTest](https://www.webpagetest.org/lighthouse) or [PageSpeed Insights](https://pagespeed.web.dev/). This website is powered by Vue itself, with SSG pre-rendering, full page hydration and SPA client-side navigation. It scores 100 in performance on an emulated Moto G4 with 4x CPU throttling over slow 4G networks.
+
+You can learn more about how Vue automatically optimizes runtime performance in the [Rendering Mechanism](/guide/extras/rendering-mechanism) section, and how to optimize a Vue app in particularly demanding cases in the [Performance Optimization Guide](/guide/best-practices/performance).
+
+## Is Vue lightweight? {#is-vue-lightweight}
+
+When you use a build tool, many of Vue's APIs are ["tree-shakable"](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking). For example, if you don't use the built-in `<Transition>` component, it won't be included in the final production bundle.
+
+A hello world Vue app that only uses the absolutely minimal APIs has a baseline size of only around **16kb**, with minification and brotli compression. The actual size of the application will depend on how many optional features you use from the framework. In the unlikely case where an app uses every single feature that Vue provides, the total runtime size is around **27kb**.
+
+When using Vue without a build tool, we not only lose tree-shaking, but also have to ship the template compiler to the browser. This bloats up the size to around **41kb**. Therefore, if you are using Vue primarily for progressive enhancement without a build step, consider using [petite-vue](https://github.com/vuejs/petite-vue) (only **6kb**) instead.
+
+Some frameworks, such as Svelte, use a compilation strategy that produces extremely lightweight output in single-component scenarios. However, [our research](https://github.com/yyx990803/vue-svelte-size-analysis) shows that the size difference heavily depends on the number of components in the application. While Vue has a heavier baseline size, it generates less code per component. In real-world scenarios, a Vue app may very well end up being lighter.
+
+## Does Vue scale? {#does-vue-scale}
+
+Yes. Despite a common misconception that Vue is only suitable for simple use cases, Vue is perfectly capable of handling large scale applications:
+
+- [Single-File Components](/guide/scaling-up/sfc) provide a modularized development model that allows different parts of an application to be developed in isolation.
+
+- [Composition API](/guide/reusability/composables) provides first-class TypeScript integration and enables clean patterns for organizing, extracting and reusing complex logic.
+
+- [Comprehensive tooling support](/guide/scaling-up/tooling) ensures a smooth development experience as the application grows.
+
+- Lower barrier to entry and excellent documentation translate to lower onboarding and training costs for new developers.
+
+## How do I contribute to Vue? {#how-do-i-contribute-to-vue}
+
+We appreciate your interest! Please check out our [Community Guide](/about/community-guide).
+
+## Should I use Options API or Composition API? {#should-i-use-options-api-or-composition-api}
+
+If you are new to Vue, we provide a high-level comparison between the two styles [here](/guide/introduction#which-to-choose).
+
+If you have previously used Options API and are currently evaluating Composition API, check out [this FAQ](/guide/extras/composition-api-faq).
+
+## Should I use JavaScript or TypeScript with Vue? {#should-i-use-javascript-or-typescript-with-vue}
+
+While Vue itself is implemented in TypeScript and provides first-class TypeScript support, it does not enforce an opinion on whether you should use TypeScript as a user.
+
+TypeScript support is an important consideration when new features are added to Vue. APIs that are designed with TypeScript in mind are typically easier for IDEs and linters to understand, even if you aren't using TypeScript yourself. Everybody wins. Vue APIs are also designed to work the same way in both JavaScript and TypeScript as much as possible.
+
+Adopting TypeScript involves a trade-off between onboarding complexity and long-term maintainability gains. Whether such a trade-off can be justified can vary depending on your team's background and project scale, but Vue isn't really an influencing factor in making that decision.
+
+## How does Vue compare to Web Components? {#how-does-vue-compare-to-web-components}
+
+Vue was created before Web Components were natively available, and some aspects of Vue's design (e.g. slots) were inspired by the Web Components model.
+
+The Web Components specs are relatively low-level, as they are centered around defining custom elements. As a framework, Vue addresses additional higher-level concerns such as efficient DOM rendering, reactive state management, tooling, client-side routing, and server-side rendering.
+
+Vue also fully supports consuming or exporting to native custom elements - check out the [Vue and Web Components Guide](/guide/extras/web-components) for more details.
+
+<!-- ## TODO How does Vue compare to React? -->
+
+<!-- ## TODO How does Vue compare to Angular? -->
+
+# Glossary {#glossary}
+
+This glossary is intended to provide some guidance about the meanings of technical terms that are in common usage when talking about Vue. It is intended to be *descriptive* of how terms are commonly used, not a *prescriptive* specification of how they must be used. Some terms may have slightly different meanings or nuances depending on the surrounding context.
+
+[[TOC]]
+
+## async component {#async-component}
+
+An *async component* is a wrapper around another component that allows for the wrapped component to be lazy loaded. This is typically used as a way to reduce the size of the built `.js` files, allowing them to be split into smaller chunks that are loaded only when required.
+
+Vue Router has a similar feature for the [lazy loading of route components](https://router.vuejs.org/guide/advanced/lazy-loading.html), though this does not use Vue's async components feature.
+
+For more details see:
+- [Guide - Async Components](/guide/components/async.html)
+
+## compiler macro {#compiler-macro}
+
+A *compiler macro* is special code that is processed by a compiler and converted into something else. They are effectively a clever form of string replacement.
+
+Vue's [SFC](#single-file-component) compiler supports various macros, such as `defineProps()`, `defineEmits()` and `defineExpose()`. These macros are intentionally designed to look like normal JavaScript functions so that they can leverage the same parser and type inference tooling around JavaScript / TypeScript. However, they are not actual functions that are run in the browser. These are special strings that the compiler detects and replaces with the real JavaScript code that will actually be run.
+
+Macros have limitations on their use that don't apply to normal JavaScript code. For example, you might think that `const dp = defineProps` would allow you to create an alias for `defineProps`, but it'll actually result in an error. There are also limitations on what values can be passed to `defineProps()`, as the 'arguments' have to be processed by the compiler and not at runtime.
+
+For more details see:
+- [`<script setup>` - `defineProps()` & `defineEmits()`](/api/sfc-script-setup.html#defineprops-defineemits)
+- [`<script setup>` - `defineExpose()`](/api/sfc-script-setup.html#defineexpose)
+
+## component {#component}
+
+The term *component* is not unique to Vue. It is common to many UI frameworks. It describes a chunk of the UI, such as a button or checkbox. Components can also be combined to form larger components.
+
+Components are the primary mechanism provided by Vue to split a UI into smaller pieces, both to improve maintainability and to allow for code reuse.
+
+A Vue component is an object. All properties are optional, but either a template or render function is required for the component to render. For example, the following object would be a valid component:
+
+
+In practice, most Vue applications are written using [Single-File Components](#single-file-component) (`.vue` files). While these components may not appear to be objects at first glance, the SFC compiler will convert them into an object, which is used as the default export for the file. From an external perspective, a `.vue` file is just an ES module that exports a component object.
+
+The properties of a component object are usually referred to as *options*. This is where the [Options API](#options-api) gets its name.
+
+The options for a component define how instances of that component should be created. Components are conceptually similar to classes, though Vue doesn't use actual JavaScript classes to define them.
+
+The term component can also be used more loosely to refer to component instances.
+
+For more details see:
+- [Guide - Component Basics](/guide/essentials/component-basics.html)
+
+The word 'component' also features in several other terms:
+- [async component](#async-component)
+- [dynamic component](#dynamic-component)
+- [functional component](#functional-component)
+- [Web Component](#web-component)
+
+## composable {#composable}
+
+The term *composable* describes a common usage pattern in Vue. It isn't a separate feature of Vue, it's just a way of using the framework's [Composition API](#composition-api).
+
+* A composable is a function.
+* Composables are used to encapsulate and reuse stateful logic.
+* The function name usually begins with `use`, so that other developers know it's a composable.
+* The function is typically expected to be called during the synchronous execution of a component's `setup()` function (or, equivalently, during the execution of a `<script setup>` block). This ties the invocation of the composable to the current component context, e.g. via calls to `provide()`, `inject()` or `onMounted()`.
+* Composables typically return a plain object, not a reactive object. This object usually contains refs and functions and is expected to be destructured within the calling code.
+
+As with many patterns, there can be some disagreement about whether specific code qualifies for the label. Not all JavaScript utility functions are composables. If a function doesn't use the Composition API then it probably isn't a composable. If it doesn't expect to be called during the synchronous execution of `setup()` then it probably isn't a composable. Composables are specifically used to encapsulate stateful logic, they are not just a naming convention for functions.
+
+See [Guide - Composables](/guide/reusability/composables.html) for more details about writing composables.
+
+## Composition API {#composition-api}
+
+The *Composition API* is a collection of functions used to write components and composables in Vue.
+
+The term is also used to describe one of the two main styles used to write components, the other being the [Options API](#options-api). Components written using the Composition API use either `<script setup>` or an explicit `setup()` function.
+
+See the [Composition API FAQ](/guide/extras/composition-api-faq) for more details.
+
+## custom element {#custom-element}
+
+A *custom element* is a feature of the [Web Components](#web-component) standard, which is implemented in modern web browsers. It refers to the ability to use a custom HTML element in your HTML markup to include a Web Component at that point in the page.
+
+Vue has built-in support for rendering custom elements and allows them to be used directly in Vue component templates.
+
+Custom elements should not be confused with the ability to include Vue components as tags within another Vue component's template. Custom elements are used to create Web Components, not Vue components.
+
+For more details see:
+- [Guide - Vue and Web Components](/guide/extras/web-components.html)
+
+## directive {#directive}
+
+The term *directive* refers to template attributes beginning with the `v-` prefix, or their equivalent shorthands.
+
+Built-in directives include `v-if`, `v-for`, `v-bind`, `v-on` and `v-slot`.
+
+Vue also supports creating custom directives, though they are typically only used as an 'escape hatch' for manipulating DOM nodes directly. Custom directives generally can't be used to recreate the functionality of the built-in directives.
+
+For more details see:
+- [Guide - Template Syntax - Directives](/guide/essentials/template-syntax.html#directives)
+- [Guide - Custom Directives](/guide/reusability/custom-directives.html)
+
+## dynamic component {#dynamic-component}
+
+The term *dynamic component* is used to describe cases where the choice of which child component to render needs to be made dynamically. Typically, this is achieved using `<component :is="type">`.
+
+A dynamic component is not a special type of component. Any component can be used as a dynamic component. It is the choice of component that is dynamic, rather than the component itself.
+
+For more details see:
+- [Guide - Components Basics - Dynamic Components](/guide/essentials/component-basics.html#dynamic-components)
+
+## effect {#effect}
+
+See [reactive effect](#reactive-effect) and [side effect](#side-effect).
+
+## event {#event}
+
+The use of events for communicating between different parts of a program is common to many different areas of programming. Within Vue, the term is commonly applied to both native HTML element events and Vue component events. The `v-on` directive is used in templates to listen for both types of event.
+
+For more details see:
+- [Guide - Event Handling](/guide/essentials/event-handling.html)
+- [Guide - Component Events](/guide/components/events.html)
+
+## fragment {#fragment}
+
+The term *fragment* refers to a special type of [VNode](#vnode) that is used as a parent for other VNodes, but which doesn't render any elements itself.
+
+The name comes from the similar concept of a [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) in the native DOM API.
+
+Fragments are used to support components with multiple root nodes. While such components might appear to have multiple roots, behind the scenes they use a fragment node as a single root, as a parent of the 'root' nodes.
+
+Fragments are also used by the template compiler as a way to wrap multiple dynamic nodes, e.g. those created via `v-for` or `v-if`. This allows for extra hints to be passed to the [VDOM](#virtual-dom) patching algorithm. Much of this is handled internally, but one place you may encounter this directly is using a `key` on a `<template>` tag with `v-for`. In that scenario, the `key` is added as a [prop](#prop) to the fragment VNode.
+
+Fragment nodes are currently rendered to the DOM as empty text nodes, though that is an implementation detail. You may encounter those text nodes if you use `$el` or attempt to walk the DOM with built-in browser APIs.
+
+## functional component {#functional-component}
+
+A component definition is usually an object containing options. It may not appear that way if you're using `<script setup>`, but the component exported from the `.vue` file will still be an object.
+
+A *functional component* is an alternative form of component that is declared using a function instead. That function acts as the [render function](#render-function) for the component.
+
+A functional component cannot have any state of its own. It also doesn't go through the usual component lifecycle, so lifecycle hooks can't be used. This makes them slightly lighter than normal, stateful components.
+
+For more details see:
+- [Guide - Render Functions & JSX - Functional Components](/guide/extras/render-function.html#functional-components)
+
+## hoisting {#hoisting}
+
+The term *hoisting* is used to describe running a section of code before it is reached, ahead of other code. The execution is 'pulled up' to an earlier point.
+
+JavaScript uses hoisting for some constructs, such as `var`, `import` and function declarations.
+
+In a Vue context, the template compiler applies *static hoisting* to improve performance. When converting a template to a render function, VNodes that correspond to static content can be created once and then reused. These static VNodes are described as hoisted because they are created outside the render function, before it runs. A similar form of hoisting is applied to static objects or arrays that are generated by the template compiler.
+
+For more details see:
+- [Guide - Rendering Mechanism - Static Hoisting](/guide/extras/rendering-mechanism.html#static-hoisting)
+
+## in-DOM template {#in-dom-template}
+
+There are various ways to specify a template for a component. In most cases the template is provided as a string.
+
+The term *in-DOM template* refers to the scenario where the template is provided in the form of DOM nodes, instead of a string. Vue then converts the DOM nodes into a template string using `innerHTML`.
+
+Typically, an in-DOM template starts off as HTML markup written directly in the HTML of the page. The browser then parses this into DOM nodes, which Vue then uses to read off the `innerHTML`.
+
+For more details see:
+- [Guide - Creating an Application - In-DOM Root Component Template](/guide/essentials/application.html#in-dom-root-component-template)
+- [Guide - Component Basics - in-DOM Template Parsing Caveats](/guide/essentials/component-basics.html#in-dom-template-parsing-caveats)
+- [Options: Rendering - template](/api/options-rendering.html#template)
+
+## inject {#inject}
+
+See [provide / inject](#provide-inject).
+
+## lifecycle hooks {#lifecycle-hooks}
+
+A Vue component instance goes through a lifecycle. For example, it is created, mounted, updated, and unmounted.
+
+The *lifecycle hooks* are a way to listen for these lifecycle events.
+
+With the Options API, each hook is provided as a separate option, e.g. `mounted`. The Composition API uses functions instead, such as `onMounted()`.
+
+For more details see:
+- [Guide - Lifecycle Hooks](/guide/essentials/lifecycle.html)
+
+## macro {#macro}
+
+See [compiler macro](#compiler-macro).
+
+## named slot {#named-slot}
+
+A component can have multiple slots, differentiated by name. Slots other than the default slot are referred to as *named slots*.
+
+For more details see:
+- [Guide - Slots - Named Slots](/guide/components/slots.html#named-slots)
+
+## Options API {#options-api}
+
+Vue components are defined using objects. The properties of these component objects are known as *options*.
+
+Components can be written in two styles. One style uses the [Composition API](#composition-api) in conjunction with `setup` (either via a `setup()` option or `<script setup>`). The other style makes very little direct use of the Composition API, instead using various component options to achieve a similar result. The component options that are used in this way are referred to as the *Options API*.
+
+The Options API includes options such as `data()`, `computed`, `methods` and `created()`.
+
+Some options, such as `props`, `emits` and `inheritAttrs`, can be used when authoring components with either API. As they are component options, they could be considered part of the Options API. However, as these options are also used in conjunction with `setup()`, it is usually more useful to think of them as shared between the two component styles.
+
+The `setup()` function itself is a component option, so it *could* be described as part of the Options API. However, this is not how the term 'Options API' is normally used. Instead, the `setup()` function is considered to be part of Composition API.
+
+## plugin {#plugin}
+
+While the term *plugin* can be used in a wide variety of contexts, Vue has a specific concept of a plugin as a way to add functionality to an application.
+
+Plugins are added to an application by calling `app.use(plugin)`. The plugin itself is either a function or an object with an `install` function. That function will be passed the application instance and can then do whatever it needs to do.
+
+For more details see:
+- [Guide - Plugins](/guide/reusability/plugins.html)
+
+## prop {#prop}
+
+There are three common uses of the term *prop* in Vue:
+
+* Component props
+* VNode props
+* Slot props
+
+*Component props* are what most people think of as props. These are explicitly defined by a component using either `defineProps()` or the `props` option.
+
+The term *VNode props* refers to the properties of the object passed as the second argument to `h()`. These can include component props, but they can also include component events, DOM events, DOM attributes and DOM properties. You'd usually only encounter VNode props if you're working with render functions to manipulate VNodes directly.
+
+*Slot props* are the properties passed to a scoped slot.
+
+In all cases, props are properties that are passed in from elsewhere.
+
+While the word props is derived from the word *properties*, the term props has a much more specific meaning in the context of Vue. You should avoid using it as an abbreviation of properties.
+
+For more details see:
+- [Guide - Props](/guide/components/props.html)
+- [Guide - Render Functions & JSX](/guide/extras/render-function.html)
+- [Guide - Slots - Scoped Slots](/guide/components/slots.html#scoped-slots)
+
+## provide / inject {#provide-inject}
+
+`provide` and `inject` are a form of inter-component communication.
+
+When a component *provides* a value, all descendants of that component can then choose to grab that value, using `inject`. Unlike with props, the providing component doesn't know precisely which component is receiving the value.
+
+`provide` and `inject` are sometimes used to avoid *prop drilling*. They can also be used as an implicit way for a component to communicate with its slot contents.
+
+`provide` can also be used at the application level, making a value available to all components within that application.
+
+For more details see:
+- [Guide - provide / inject](/guide/components/provide-inject.html)
+
+## reactive effect {#reactive-effect}
+
+A *reactive effect* is part of Vue's reactivity system. It refers to the process of tracking the dependencies of a function and re-running that function when the values of those dependencies change.
+
+`watchEffect()` is the most direct way to create an effect. Various other parts of Vue use effects internally. e.g. component rendering updates, `computed()` and `watch()`.
+
+Vue can only track reactive dependencies within a reactive effect. If a property's value is read outside a reactive effect it'll 'lose' reactivity, in the sense that Vue won't know what to do if that property subsequently changes.
+
+The term is derived from 'side effect'. Calling the effect function is a side effect of the property value being changed.
+
+For more details see:
+- [Guide - Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+
+## reactivity {#reactivity}
+
+In general, *reactivity* refers to the ability to automatically perform actions in response to data changes. For example, updating the DOM or making a network request when a data value changes.
+
+In a Vue context, reactivity is used to describe a collection of features. Those features combine to form a *reactivity system*, which is exposed via the [Reactivity API](#reactivity-api).
+
+There are various different ways that a reactivity system could be implemented. For example, it could be done by static analysis of code to determine its dependencies. However, Vue doesn't employ that form of reactivity system.
+
+Instead, Vue's reactivity system tracks property access at runtime. It does this using both Proxy wrappers and getter/setter functions for properties.
+
+For more details see:
+- [Guide - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html)
+- [Guide - Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+
+## Reactivity API {#reactivity-api}
+
+The *Reactivity API* is a collection of core Vue functions related to [reactivity](#reactivity). These can be used independently of components. It includes functions such as `ref()`, `reactive()`, `computed()`, `watch()` and `watchEffect()`.
+
+The Reactivity API is a subset of the Composition API.
+
+For more details see:
+- [Reactivity API: Core](/api/reactivity-core.html)
+- [Reactivity API: Utilities](/api/reactivity-utilities.html)
+- [Reactivity API: Advanced](/api/reactivity-advanced.html)
+
+## ref {#ref}
+
+> This entry is about the use of `ref` for reactivity. For the `ref` attribute used in templates, see [template ref](#template-ref) instead.
+
+A `ref` is part of Vue's reactivity system. It is an object with a single reactive property, called `value`.
+
+There are various different types of ref. For example, refs can be created using `ref()`, `shallowRef()`, `computed()`, and `customRef()`. The function `isRef()` can be used to check whether an object is a ref, and `isReadonly()` can be used to check whether the ref allows the direct reassignment of its value.
+
+For more details see:
+- [Guide - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html)
+- [Reactivity API: Core](/api/reactivity-core.html)
+- [Reactivity API: Utilities](/api/reactivity-utilities.html)
+- [Reactivity API: Advanced](/api/reactivity-advanced.html)
+
+## render function {#render-function}
+
+A *render function* is the part of a component that generates the VNodes used during rendering. Templates are compiled down into render functions.
+
+For more details see:
+- [Guide - Render Functions & JSX](/guide/extras/render-function.html)
+
+## scheduler {#scheduler}
+
+The *scheduler* is the part of Vue's internals that controls the timing of when [reactive effects](#reactive-effect) are run.
+
+When reactive state changes, Vue doesn't immediately trigger rendering updates. Instead, it batches them together using a queue. This ensures that a component only re-renders once, even if multiple changes are made to the underlying data.
+
+[Watchers](/guide/essentials/watchers.html) are also batched using the scheduler queue. Watchers with `flush: 'pre'` (the default) will run before component rendering, whereas those with `flush: 'post'` will run after component rendering.
+
+Jobs in the scheduler are also used to perform various other internal tasks, such as triggering some [lifecycle hooks](#lifecycle-hooks) and updating [template refs](#template-ref).
+
+## scoped slot {#scoped-slot}
+
+The term *scoped slot* is used to refer to a [slot](#slot) that receives [props](#prop).
+
+Historically, Vue made a much greater distinction between scoped and non-scoped slots. To some extent they could be regarded as two separate features, unified behind a common template syntax.
+
+In Vue 3, the slot APIs were simplified to make all slots behave like scoped slots. However, the use cases for scoped and non-scoped slots often differ, so the term still proves useful as a way to refer to slots with props.
+
+The props passed to a slot can only be used within a specific region of the parent template, responsible for defining the slot's contents. This region of the template behaves as a variable scope for the props, hence the name 'scoped slot'.
+
+For more details see:
+- [Guide - Slots - Scoped Slots](/guide/components/slots.html#scoped-slots)
+
+## SFC {#sfc}
+
+See [Single-File Component](#single-file-component).
+
+## side effect {#side-effect}
+
+The term *side effect* is not specific to Vue. It is used to describe operations or functions that do something beyond their local scope.
+
+For example, in the context of setting a property like `user.name = null`, it is expected that this will change the value of `user.name`. If it also does something else, like triggering Vue's reactivity system, then this would be described as a side effect. This is the origin of the term [reactive effect](#reactive-effect) within Vue.
+
+When a function is described as having side effects, it means that the function performs some sort of action that is observable outside the function, aside from just returning a value. This might mean that it updates a value in state, or triggers a network request.
+
+The term is often used when describing rendering or computed properties. It is considered best practice for rendering to have no side effects. Likewise, the getter function for a computed property should have no side effects.
+
+## Single-File Component {#single-file-component}
+
+The term *Single-File Component*, or SFC, refers to the `.vue` file format that is commonly used for Vue components.
+
+See also:
+- [Guide - Single-File Components](/guide/scaling-up/sfc.html)
+- [SFC Syntax Specification](/api/sfc-spec.html)
+
+## slot {#slot}
+
+Slots are used to pass content to child components. Whereas props are used to pass data values, slots are used to pass richer content consisting of HTML elements and other Vue components.
+
+For more details see:
+- [Guide - Slots](/guide/components/slots.html)
+
+## template ref {#template-ref}
+
+The term *template ref* refers to using a `ref` attribute on a tag within a template. After the component renders, this attribute is used to populate a corresponding property with either the HTML element or the component instance that corresponds to the tag in the template.
+
+If you are using the Options API then the refs are exposed via properties of the `$refs` object.
+
+With the Composition API, template refs populate a reactive [ref](#ref) with the same name.
+
+Template refs should not be confused with the reactive refs found in Vue's reactivity system.
+
+For more details see:
+- [Guide - Template Refs](/guide/essentials/template-refs.html)
+
+## VDOM {#vdom}
+
+See [virtual DOM](#virtual-dom).
+
+## virtual DOM {#virtual-dom}
+
+The term *virtual DOM* (VDOM) is not unique to Vue. It is a common approach used by several web frameworks for managing updates to the UI.
+
+Browsers use a tree of nodes to represent the current state of the page. That tree, and the JavaScript APIs used to interact with it, are referred to as the *document object model*, or *DOM*.
+
+Manipulating the DOM is a major performance bottleneck. The virtual DOM provides one strategy for managing that.
+
+Rather than creating DOM nodes directly, Vue components generate a description of what DOM nodes they would like. These descriptors are plain JavaScript objects, known as VNodes (virtual DOM nodes). Creating VNodes is relatively cheap.
+
+Every time a component re-renders, the new tree of VNodes is compared to the previous tree of VNodes and any differences are then applied to the real DOM. If nothing has changed then the DOM doesn't need to be touched.
+
+Vue uses a hybrid approach that we call [Compiler-Informed Virtual DOM](/guide/extras/rendering-mechanism.html#compiler-informed-virtual-dom). Vue's template compiler is able to apply performance optimizations based on static analysis of the template. Rather than performing a full comparison of a component's old and new VNode trees at runtime, Vue can use information extracted by the compiler to reduce the comparison to just the parts of the tree that can actually change.
+
+For more details see:
+- [Guide - Rendering Mechanism](/guide/extras/rendering-mechanism.html)
+- [Guide - Render Functions & JSX](/guide/extras/render-function.html)
+
+## VNode {#vnode}
+
+A *VNode* is a *virtual DOM node*. They can be created using the [`h()`](/api/render-function.html#h) function.
+
+See [virtual DOM](#virtual-dom) for more information.
+
+## Web Component {#web-component}
+
+The *Web Components* standard is a collection of features implemented in modern web browsers.
+
+Vue components are not Web Components, but `defineCustomElement()` can be used to create a [custom element](#custom-element) from a Vue component. Vue also supports the use of custom elements inside Vue components.
+
+For more details see:
+- [Guide - Vue and Web Components](/guide/extras/web-components.html)
+A full changelog of past releases is available on [GitHub](https://github.com/vuejs/core/blob/main/CHANGELOG.md).
+
+## Release Cycle {#release-cycle}
+
+Vue does not have a fixed release cycle.
+
+- Patch releases are released as needed.
+
+- Minor releases always contain new features, with a typical time frame of 3~6 months in between. Minor releases always go through a beta pre-release phase.
+
+- Major releases will be announced ahead of time, and will go through an early discussion phase and alpha / beta pre-release phases.
+
+## Semantic Versioning Edge Cases {#semantic-versioning-edge-cases}
+
+Vue releases follow [Semantic Versioning](https://semver.org/) with a few edge cases.
+
+### TypeScript Definitions {#typescript-definitions}
+
+We may ship incompatible changes to TypeScript definitions between **minor** versions. This is because:
+
+1. Sometimes TypeScript itself ships incompatible changes between minor versions, and we may have to adjust types to support newer versions of TypeScript.
+
+2. Occasionally we may need to adopt features that are only available in a newer version of TypeScript, raising the minimum required version of TypeScript.
+
+If you are using TypeScript, you can use a semver range that locks the current minor and manually upgrade when a new minor version of Vue is released.
+
+### Compiled Code Compatibility with Older Runtime {#compiled-code-compatibility-with-older-runtime}
+
+A newer **minor** version of Vue compiler may generate code that isn't compatible with the Vue runtime from an older minor version. For example, code generated by Vue 3.2 compiler may not be fully compatible if consumed by the runtime from Vue 3.1.
+
+This is only a concern for library authors, because in applications, the compiler version and the runtime version is always the same. A version mismatch can only happen if you ship pre-compiled Vue component code as a package, and a consumer uses it in a project using an older version of Vue. As a result, your package may need to explicitly declare a minimum required minor version of Vue.
+
+## Pre Releases {#pre-releases}
+
+Minor releases typically go through a non-fixed number of beta releases. Major releases will go through an alpha phase and a beta phase.
+
+Additionally, we publish canary releases every week from the `main` and `minor` branches on GitHub. They are published as different packages to avoid bloating the npm metadata of the stable channel. You can install them via `npx install-vue@canary` or `npx install-vue@canary-minor`, respectively.
+
+Pre-releases are meant for integration / stability testing, and for early adopters to provide feedback for unstable features. Do not use pre-releases in production. All pre-releases are considered unstable and may ship breaking changes in between, so always pin to exact versions when using pre-releases.
+
+## Deprecations {#deprecations}
+
+We may periodically deprecate features that have new, better replacements in minor releases. Deprecated features will continue to work, and will be removed in the next major release after it entered deprecated status.
+
+## RFCs {#rfcs}
+
+New features with substantial API surface and major changes to Vue will go through the **Request for Comments** (RFC) process. The RFC process is intended to provide a consistent and controlled path for new features to enter the framework, and give the users an opportunity to participate and offer feedback in the design process.
+
+The RFC process is conducted in the [vuejs/rfcs](https://github.com/vuejs/rfcs) repo on GitHub.
+
+## Experimental Features {#experimental-features}
+
+Some features are shipped and documented in a stable version of Vue, but marked as experimental. Experimental features are typically features that have an associated RFC discussion with most of the design problems resolved on paper, but still lacking feedback from real-world usage.
+
+The goal of experimental features is to allow users to provide feedback for them by testing them in a production setting, without having to use an unstable version of Vue. Experimental features themselves are considered unstable, and should only be used in a controlled manner, with the expectation that the feature may change between any release types.

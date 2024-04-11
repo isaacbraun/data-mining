@@ -1,0 +1,6547 @@
+script setup
+import onmounted vue
+
+typeof window undefined
+const hash window location hash
+
+docs model used part page attempt redirect outdated links
+
+usage model
+model arguments
+multiple model bindings
+handling model modifiers
+includes hash
+onmounted
+window location model html hash
+
+
+
+script
+
+component events component events
+
+page assumes already read components basics guide essentials component basics read first new components
+
+div class options api
+vueschoollink href title free vue js lesson defining custom events
+div
+
+emitting listening events emitting listening events
+
+component emit custom events directly template expressions handler using built emit method
+
+vue html
+mycomponent
+button click emit someevent click button
+
+
+div class options api
+
+emit method also available component instance emit
+
+js
+export default
+methods
+submit
+emit someevent
+
+
+
+
+
+div
+
+parent listen using
+
+vue html
+mycomponent event callback
+
+
+modifier also supported component event listeners
+
+vue html
+mycomponent event callback
+
+
+like components props event names provide automatic case transformation notice emitted camelcase event listen using kebab cased listener parent props casing guide components props prop name casing recommend using kebab cased event listeners templates
+
+tip
+unlike native dom events component emitted events bubble listen events emitted direct child component need communicate sibling deeply nested components use external event bus global state management solution guide scaling state management
+
+
+event arguments event arguments
+
+sometimes useful emit specific value event example may want blogpost component charge much enlarge text cases pass extra arguments emit provide value
+
+vue html
+button click emit increaseby
+increase
+button
+
+
+listen event parent use inline arrow function listener allows us access event argument
+
+vue html
+mybutton increase count
+
+
+event handler method
+
+vue html
+mybutton increase increasecount
+
+
+value passed first parameter method
+
+div class options api
+
+js
+methods
+increasecount
+count
+
+
+
+
+div
+div class composition api
+
+js
+function increasecount
+count value
+
+
+
+div
+
+tip
+extra arguments passed emit event name forwarded listener example emit foo listener function receive three arguments
+
+
+declaring emitted events declaring emitted events
+
+component explicitly declare events emit using span class composition api defineemits api sfc script setup defineprops defineemits macro span span class options api emits api options state emits option span
+
+div class composition api
+
+vue
+script setup
+defineemits infocus submit
+script
+
+
+emit method used template accessible within script setup section component defineemits returns equivalent function use instead
+
+vue
+script setup
+const emit defineemits infocus submit
+
+function buttonclick
+emit submit
+
+script
+
+
+defineemits macro cannot used inside function must placed directly within script setup example
+
+using explicit setup function instead script setup events declared using emits api options state emits option emit function exposed setup context
+
+js
+export default
+emits infocus submit
+setup props ctx
+ctx emit submit
+
+
+
+
+properties setup context emit safely destructured
+
+js
+export default
+emits infocus submit
+setup props emit
+emit submit
+
+
+
+
+div
+div class options api
+
+js
+export default
+emits infocus submit
+
+
+
+div
+
+emits option defineemits macro also support object syntax using typescript type arguments allows us perform runtime validation payload emitted events
+
+div class composition api
+
+vue
+script setup lang ts
+const emit defineemits
+submit payload email string password string
+return true false indicate
+validation pass fail
+
+
+script
+
+
+using typescript script setup also possible declare emitted events using pure type annotations
+
+vue
+script setup lang ts
+const emit defineemits
+change id number void
+update value string void
+
+script
+
+
+details typing component emits guide typescript composition api typing component emits sup class vt badge ts
+
+div
+div class options api
+
+js
+export default
+emits
+submit payload email string password string
+return true false indicate
+validation pass fail
+
+
+
+
+
+see also typing component emits guide typescript options api typing component emits sup class vt badge ts
+
+div
+
+although optional recommended define emitted events order better document component work also allows vue exclude known listeners fallthrough attributes guide components attrs listener inheritance avoiding edge cases caused dom events manually dispatched rd party code
+
+tip
+native event click defined emits option listener listen component emitted click events longer respond native click events
+
+
+events validation events validation
+
+similar prop type validation emitted event validated defined object syntax instead array syntax
+
+add validation event assigned function receives arguments passed span class options api emit span span class composition api emit span call returns boolean indicate whether event valid
+
+div class composition api
+
+vue
+script setup
+const emit defineemits
+validation
+click null
+
+validate submit event
+submit email password
+email password
+return true
+else
+console warn invalid submit event payload
+return false
+
+
+
+
+function submitform email password
+emit submit email password
+
+script
+
+
+div
+div class options api
+
+js
+export default
+emits
+validation
+click null
+
+validate submit event
+submit email password
+email password
+return true
+else
+console warn invalid submit event payload
+return false
+
+
+
+methods
+submitform email password
+emit submit email password
+
+
+
+
+
+div
+script setup
+import vtcodegroup vtcodegrouptab vue theme
+script
+
+tooling tooling
+
+try online try online
+
+need install anything machine try vue sfcs online playgrounds allow right browser
+
+vue sfc playground
+always deployed latest commit
+designed inspecting component compilation results
+vue vite stackblitz
+ide like environment running actual vite dev server browser
+closest local setup
+
+also recommended use online playgrounds provide reproductions reporting bugs
+
+project scaffolding project scaffolding
+
+vite vite
+
+vite lightweight fast build tool first class vue sfc support created evan also author vue
+
+get started vite vue simply run
+
+vtcodegroup
+vtcodegrouptab label npm
+
+sh
+npm create vue latest
+
+
+vtcodegrouptab
+vtcodegrouptab label pnpm
+
+sh
+pnpm create vue latest
+
+
+vtcodegrouptab
+vtcodegrouptab label yarn
+
+sh
+yarn create vue latest
+
+
+vtcodegrouptab
+vtcodegrouptab label bun
+
+sh
+bun create vue latest
+
+
+vtcodegrouptab
+vtcodegroup
+
+command install execute create vue official vue project scaffolding tool
+
+learn vite check vite docs
+configure vue specific behavior vite project example passing options vue compiler check docs vitejs plugin vue
+
+online playgrounds mentioned also support downloading files vite project
+
+vue cli vue cli
+
+vue cli official webpack based toolchain vue maintenance mode recommend starting new projects vite unless rely specific webpack features vite provide superior developer experience cases
+
+information migrating vue cli vite
+
+vue cli vite migration guide vueschool io
+tools plugins help auto migration
+
+note browser template compilation note browser template compilation
+
+using vue without build step component templates written either directly page html inlined javascript strings cases vue needs ship template compiler browser order perform fly template compilation hand compiler would unnecessary pre compile templates build step reduce client bundle size vue provides different builds optimized different use cases
+
+build files start vue runtime runtime builds include compiler using builds templates must pre compiled via build step
+
+build files include runtime full builds include compiler support compiling templates directly browser however increase payload kb
+
+default tooling setups use runtime build since templates sfcs pre compiled reason need browser template compilation even build step configuring build tool alias vue vue dist vue esm bundler js instead
+
+looking lighter weight alternative build step usage check petite vue
+
+ide support ide support
+
+recommended ide setup vs code vue official extension previously volar extension provides syntax highlighting typescript support intellisense template expressions component props
+
+tip
+vue official replaces vetur previous official vs code extension vue vetur currently installed make sure disable vue projects
+
+
+webstorm also provides great built support vue sfcs
+
+ides support language service protocol lsp also leverage volar core functionalities via lsp
+
+sublime text support via lsp volar
+
+vim neovim support via coc volar
+
+emacs support via lsp mode
+
+browser devtools browser devtools
+
+vueschoollink href title free vue js devtools lesson
+
+vue browser devtools extension allows explore vue app component tree inspect state individual components track state management events profile performance
+
+devtools screenshot
+
+documentation
+chrome extension
+firefox addon
+edge extension
+standalone electron app
+
+typescript typescript
+
+main article using vue typescript guide typescript overview
+
+vue official extension provides type checking sfcs using script lang ts blocks including template expressions cross component props validation
+
+use vue tsc performing type checking command line generating ts files sfcs
+
+testing testing
+
+main article testing guide guide scaling testing
+
+cypress recommended tests also used component testing vue sfcs via cypress component test runner
+
+vitest test runner created vue vite team members focuses speed specifically designed vite based applications provide instant feedback loop unit component testing
+
+jest made work vite via vite jest however recommended existing jest based test suites need migrate vite based setup vitest provides similar functionalities much efficient integration
+
+linting linting
+
+vue team maintains eslint plugin vue eslint plugin supports sfc specific linting rules
+
+users previously using vue cli may used linters configured via webpack loaders however using vite based build setup general recommendation
+
+npm install eslint eslint plugin vue follow eslint plugin vue configuration guide
+
+setup eslint ide extensions example eslint vs code get linter feedback right editor development also avoids unnecessary linting cost starting dev server
+
+run eslint part production build command get full linter feedback shipping production
+
+optional setup tools like lint staged automatically lint modified files git commit
+
+formatting formatting
+
+vue official vs code extension provides formatting vue sfcs box
+
+alternatively prettier provides built vue sfc formatting support
+
+sfc custom block integrations sfc custom block integrations
+
+custom blocks compiled imports vue file different request queries underlying build tool handle import requests
+
+using vite custom vite plugin used transform matched custom blocks executable javascript example
+
+using vue cli plain webpack webpack loader configured transform matched blocks example
+
+lower level packages lower level packages
+
+vue compiler sfc vue compiler sfc
+
+docs
+
+package part vue core monorepo always published version main vue package included dependency main vue package proxied vue compiler sfc need install individually
+
+package provides lower level utilities processing vue sfcs meant tooling authors need support vue sfcs custom tools
+
+tip
+always prefer using package via vue compiler sfc deep import since ensures version sync vue runtime
+
+
+vitejs plugin vue vitejs plugin vue
+
+docs
+
+official plugin provides vue sfc support vite
+
+vue loader vue loader
+
+docs
+
+official loader provides vue sfc support webpack using vue cli also see docs modifying vue loader options vue cli
+
+online playgrounds online playgrounds
+
+vueuse playground
+vue vite repl
+vue codesandbox
+vue codepen
+vue components studio
+vue webcomponents dev
+
+todo backend framework integrations
+async components async components
+
+basic usage basic usage
+
+large applications may need divide app smaller chunks load component server needed make possible vue defineasynccomponent api general defineasynccomponent function
+
+js
+import defineasynccomponent vue
+
+const asynccomp defineasynccomponent
+return new promise resolve reject
+load component server
+resolve loaded component
+
+
+use asynccomp like normal component
+
+
+see defineasynccomponent accepts loader function returns promise promise resolve callback called retrieved component definition server also call reject reason indicate load failed
+
+es module dynamic import also returns promise time use combination defineasynccomponent bundlers like vite webpack also support syntax use bundle split points use import vue sfcs
+
+js
+import defineasynccomponent vue
+
+const asynccomp defineasynccomponent
+import components mycomponent vue
+
+
+
+resulting asynccomp wrapper component calls loader function actually rendered page addition pass along props slots inner component use async wrapper seamlessly replace original component achieving lazy loading
+
+normal components async components registered globally guide components registration global registration using app component
+
+js
+app component mycomponent defineasynccomponent
+import components mycomponent vue
+
+
+
+div class options api
+
+also use defineasynccomponent registering component locally guide components registration local registration
+
+vue
+script
+import defineasynccomponent vue
+
+export default
+components
+adminpage defineasynccomponent
+import components adminpagecomponent vue
+
+
+
+script
+
+template
+adminpage
+template
+
+
+div
+
+div class composition api
+
+also defined directly inside parent component
+
+vue
+script setup
+import defineasynccomponent vue
+
+const adminpage defineasynccomponent
+import components adminpagecomponent vue
+
+script
+
+template
+adminpage
+template
+
+
+div
+
+loading error states loading error states
+
+asynchronous operations inevitably involve loading error states defineasynccomponent supports handling states via advanced options
+
+js
+const asynccomp defineasynccomponent
+loader function
+loader import foo vue
+
+component use async component loading
+loadingcomponent loadingcomponent
+delay showing loading component default ms
+delay
+
+component use load fails
+errorcomponent errorcomponent
+error component displayed timeout
+provided exceeded default infinity
+timeout
+
+
+
+loading component provided displayed first inner component loaded default ms delay loading component shown fast networks instant loading state may get replaced fast end looking like flicker
+
+error component provided displayed promise returned loader function rejected also specify timeout show error component request taking long
+
+using suspense using suspense
+
+async components used suspense built component interaction suspense async components documented dedicated chapter suspense guide built ins suspense
+accessibility accessibility
+
+web accessibility also known refers practice creating websites used anyone person disability slow connection outdated broken hardware simply someone unfavorable environment example adding subtitles video would help deaf hard hearing users users loud environment hear phone similarly making sure text low contrast help low vision users users trying use phone bright sunlight
+
+ready start sure
+
+checkout planning managing web accessibility guide provided world wide web consortium
+
+skip link skip link
+
+add link top page goes directly main content area users skip content repeated multiple web pages
+
+typically done top app vue first focusable element pages
+
+vue html
+ul class skip links
+li
+href main ref skiplink class skip link skip main content
+li
+ul
+
+
+hide link unless focused add following style
+
+css
+skip link
+white space nowrap
+margin em auto
+top
+position fixed
+left
+margin left px
+opacity
+
+skip link focus
+opacity
+background color white
+padding em
+border px solid black
+
+
+
+user changes route bring focus back skip link achieved calling focus skip link template ref assuming usage vue router
+
+div class options api
+
+vue
+script
+export default
+watch
+route
+refs skiplink focus
+
+
+
+script
+
+
+div
+div class composition api
+
+vue
+script setup
+import ref watch vue
+import useroute vue router
+
+const route useroute
+const skiplink ref
+
+watch
+route path
+
+skiplink value focus
+
+
+script
+
+
+div
+
+read documentation skip link main content
+
+content structure content structure
+
+one important pieces accessibility making sure design support accessible implementation design consider color contrast font selection text sizing language also content structured application
+
+headings headings
+
+users navigate application headings descriptive headings every section application makes easier users predict content section comes headings couple recommended accessibility practices
+
+nest headings ranking order
+skip headings within section
+use actual heading tags instead styling text give visual appearance headings
+
+read headings
+
+vue html
+main role main aria labelledby main title
+id main title main title
+section aria labelledby section title
+id section title section title
+section subtitle
+content
+section
+section aria labelledby section title
+id section title section title
+section subtitle
+content
+section subtitle
+content
+section
+main
+
+
+landmarks landmarks
+
+landmarks provide programmatic access sections within application users rely assistive technology navigate section application skip content use aria roles help achieve
+
+html aria role landmark purpose
+
+header role banner prime heading title page
+nav role navigation collection links suitable use navigating document related documents
+main role main main central content document
+footer role contentinfo information parent document footnotes copyrights links privacy statement
+aside role complementary supports main content yet separated meaningful content
+search role search section contains search functionality application
+form role form collection form associated elements
+section role region content relevant users likely want navigate label must provided element
+
+tip tip
+recommended use landmark html elements redundant landmark role attributes order maximize compatibility legacy browsers support html semantic elements
+
+
+read landmarks
+
+semantic forms semantic forms
+
+creating form use following elements form label input textarea button
+
+labels typically placed top left form fields
+
+vue html
+form action datacollectionlocation method post autocomplete
+div item formitems key item id class form item
+label item id item label label
+input
+type item type
+id item id
+name item id
+model item value
+
+div
+button type submit submit button
+form
+
+
+common codepen snippet title simple form slug dynzzwz height tab js result theme light preview false editable false
+
+notice include autocomplete form element apply inputs form also set different values autocomplete attribute input
+
+labels labels
+
+provide labels describe purpose form control linking id
+
+vue html
+label name name label
+input type text name name id name model name
+
+
+common codepen snippet title form label slug xwpaaaj height tab js result theme light preview false editable false
+
+inspect element chrome developer tools open accessibility tab inside elements tab see input gets name label
+
+chrome developer tools showing input accessible name label images accessiblelabelchromedevtools png
+
+warning warning
+though might seen labels wrapping input fields like
+
+vue html
+label
+name
+input type text name name id name model name
+label
+
+
+explicitly setting labels matching id better supported assistive technology
+
+
+aria label aria label
+
+also give input accessible name aria label
+
+vue html
+label name name label
+input
+type text
+name name
+id name
+model name
+aria label namelabel
+
+
+
+common codepen snippet title form aria label slug nwdvvyq height tab js result theme light preview false editable false
+
+feel free inspect element chrome devtools see accessible name changed
+
+chrome developer tools showing input accessible name aria label images accessiblearialabeldevtools png
+
+aria labelledby aria labelledby
+
+using aria labelledby similar aria label except used label text visible screen paired elements id link multiple id
+
+vue html
+form
+class demo
+action datacollectionlocation
+method post
+autocomplete
+
+id billing billing
+div class form item
+label name name label
+input
+type text
+name name
+id name
+model name
+aria labelledby billing name
+
+div
+button type submit submit button
+form
+
+
+common codepen snippet title form aria labelledby slug mwjvvbe height tab js result theme light preview false editable false
+
+chrome developer tools showing input accessible name aria labelledby images accessiblearialabelledbydevtools png
+
+aria describedby aria describedby
+
+aria describedby used way aria labelledby except provides description additional information user might need used describe criteria input
+
+vue html
+form
+class demo
+action datacollectionlocation
+method post
+autocomplete
+
+id billing billing
+div class form item
+label name full name label
+input
+type text
+name name
+id name
+model name
+aria labelledby billing name
+aria describedby namedescription
+
+id namedescription please provide first last name
+div
+button type submit submit button
+form
+
+
+common codepen snippet title form aria describedby slug gogxxqe height tab js result theme light preview false editable false
+
+see description inspecting chrome devtools
+
+chrome developer tools showing input accessible name aria labelledby description aria describedby images accessibleariadescribedby png
+
+placeholder placeholder
+
+avoid using placeholders confuse many users
+
+one issues placeholders meet color contrast criteria default fixing color contrast makes placeholder look like pre populated data input fields looking following example see last name placeholder meets color contrast criteria looks like pre populated data
+
+accessible placeholder images accessibleplaceholder png
+
+vue html
+form
+class demo
+action datacollectionlocation
+method post
+autocomplete
+
+div item formitems key item id class form item
+label item id item label label
+input
+type text
+id item id
+name item id
+model item value
+placeholder item placeholder
+
+div
+button type submit submit button
+form
+
+
+css
+
+
+lastname placeholder
+chrome firefox opera safari
+color black
+opacity firefox
+
+
+lastname ms input placeholder
+internet explorer
+color black
+
+
+lastname ms input placeholder
+microsoft edge
+color black
+
+
+
+best provide information user needs fill forms outside inputs
+
+instructions instructions
+
+adding instructions input fields make sure link correctly input
+provide additional instructions bind multiple ids inside aria labelledby allows flexible design
+
+vue html
+fieldset
+legend using aria labelledby legend
+label id date label date current date label
+input
+type date
+name date
+id date
+aria labelledby date label date instructions
+
+id date instructions mm dd yyyy
+fieldset
+
+
+alternatively attach instructions input aria describedby
+
+vue html
+fieldset
+legend using aria describedby legend
+label id dob dob date birth label
+input type date name dob id dob aria describedby dob instructions
+id dob instructions mm dd yyyy
+fieldset
+
+
+common codepen snippet title form instructions slug wnreeqv height tab js result theme light preview false editable false
+
+hiding content hiding content
+
+usually recommended visually hide labels even input accessible name however functionality input understood surrounding content hide visual label
+
+let look search field
+
+vue html
+form role search
+label search class hidden visually search label
+input type text name search id search model search
+button type submit search button
+form
+
+
+search button help visual users identify purpose input field
+
+use css visually hide elements keep available assistive technology
+
+css
+hidden visually
+position absolute
+overflow hidden
+white space nowrap
+margin
+padding
+height px
+width px
+clip rect
+clip path inset
+
+
+
+common codepen snippet title form search slug qwdmqwy height tab js result theme light preview false editable false
+
+aria hidden true aria hidden true
+
+adding aria hidden true hide element assistive technology leave visually available users use focusable elements purely decorative duplicated offscreen content
+
+vue html
+hidden screen readers
+aria hidden true hidden screen readers
+
+
+buttons buttons
+
+using buttons inside form must set type prevent submitting form
+also use input create buttons
+
+vue html
+form action datacollectionlocation method post autocomplete
+buttons
+button type button cancel button
+button type submit submit button
+
+input buttons
+input type button value cancel
+input type submit value submit
+form
+
+
+common codepen snippet title form buttons slug jjeyryz height tab js result theme light preview false editable false
+
+functional images functional images
+
+use technique create functional images
+
+input fields
+
+images act submit type button forms
+
+vue html
+form role search
+label search class hidden visually search label
+input type text name search id search model search
+input
+type image
+class btnimg
+src
+alt search
+
+form
+
+
+icons
+
+vue html
+form role search
+label searchicon class hidden visually search label
+input type text name searchicon id searchicon model searchicon
+button type submit
+class fas fa search aria hidden true
+span class hidden visually search span
+button
+form
+
+
+common codepen snippet title functional images slug joylgqm height tab js result theme light preview false editable false
+
+standards standards
+
+world wide web consortium web accessibility initiative wai develops web accessibility standards different components
+
+user agent accessibility guidelines uaag
+web browsers media players including aspects assistive technologies
+authoring tool accessibility guidelines atag
+authoring tools
+web content accessibility guidelines wcag
+web content used developers authoring tools accessibility evaluation tools
+
+web content accessibility guidelines wcag web content accessibility guidelines wcag
+
+wcag extends wcag allows implementation new technologies addressing changes web encourages use current version wcag developing updating web accessibility policies
+
+wcag four main guiding principles abbreviated pour wcag four main guiding principles abbreviated pour
+
+perceivable
+users must able perceive information presented
+operable
+interface forms controls navigation operable
+understandable
+information operation user interface must understandable users
+robust
+users must able access content technologies advance
+
+web accessibility initiative accessible rich internet applications wai aria web accessibility initiative accessible rich internet applications wai aria
+
+wai aria provides guidance build dynamic content advanced user interface controls
+
+accessible rich internet applications wai aria
+wai aria authoring practices
+
+resources resources
+
+documentation documentation
+
+wcag
+wcag
+accessible rich internet applications wai aria
+wai aria authoring practices
+
+assistive technologies assistive technologies
+
+screen readers
+nvda
+voiceover
+jaws
+chromevox
+zooming tools
+magic
+zoomtext
+magnifier
+
+testing testing
+
+automated tools
+lighthouse
+wave
+arc toolkit
+color tools
+webaim color contrast
+webaim link color contrast
+helpful tools
+headingmap
+color oracle
+nerdefocus
+visual aria
+silktide website accessibility simulator
+
+users users
+
+world health organization estimates world population form disability severely estimated billion people worldwide making people disabilities largest minority group world
+
+huge range disabilities divided roughly four categories
+
+visual users benefit use screen readers screen magnification controlling screen contrast braille display
+auditory users benefit captioning transcripts sign language video
+motor users benefit range assistive technologies motor impairments voice recognition software eye tracking single switch access head wand sip puff switch oversized trackball mouse adaptive keyboard assistive technologies
+cognitive users benefit supplemental media structural organization content clear simple writing
+
+check following links webaim understand users
+
+web accessibility perspectives explore impact benefits everyone
+stories web users
+
+outline deep
+
+
+community guide community guide
+
+vue community growing incredibly fast reading good chance ready join welcome
+
+answer community community
+
+resources resources
+
+code conduct code conduct
+
+code conduct coc guide make easier enrich us technical communities participate
+
+stay know stay know
+
+follow official twitter account
+follow team members team twitter github
+follow rfc discussions
+subscribe official blog
+
+get support get support
+
+discord chat place vue devs meet chat real time
+forum best place ask questions get answers vue ecosystem
+dev community share discuss vue related topics dev
+meetups want find local vue enthusiasts like interested becoming community leader help support need right
+github bug report feature request github issues please respect rules specified repository issue template
+twitter community unofficial twitter community meet vue enthusiasts get help chat vue
+
+explore ecosystem explore ecosystem
+
+awesome vue page see awesome resources published awesome people
+vue telescope explorer explore websites made vue insights framework libraries use
+made vue js showcases projects libraries made vue
+show tell subforum another great place check others built growing vue ecosystem
+
+
+
+help fellow users help fellow users
+
+code contribution form contribution vue community answering question fellow vue user discord forum also considered valuable contribution
+
+help triage issues help triage issues
+
+triaging issue means gathering missing information running reproduction verifying issue validity investigating cause issue
+
+receive many issues repositories github every single day bandwidth limited compared amount users issue triaging alone take enormous amount effort team helping us triage issues helping us become efficient allowing us spend time higher priority work
+
+triage issue goal fixing although would nice sharing result investigation example commit led bug already save us ton time
+
+contribute code contribute code
+
+contributing bug fixes new features direct form contribution make
+
+vue core repository provides contributing guide contains pull request guidelines information regarding build setup high level architecture sub project repositories may also contain contribution guide please make sure read submitting pull requests
+
+bug fixes welcome time new features best discuss use case implementation details first rfc repo
+
+share build experience share build experience
+
+apart answering questions sharing resources forum chat less obvious ways share expand know
+
+develop learning materials often said best way learn teach something interesting vue strengthen expertise writing blog post developing workshop even publishing gist share social media
+watch repo care send notifications whenever activity repository giving insider knowledge ongoing discussions upcoming features fantastic way build expertise eventually able help address issues pull requests
+
+translate docs translate docs
+
+hope right reading sentence preferred language would like help us get
+
+see translations guide translations details get involved
+
+become community leader become community leader
+
+lot help vue grow community
+
+present local meetup whether giving talk running workshop bring lot value community helping new experienced vue developers continue grow
+start meetup already vue meetup area start use resources events vuejs org help succeed
+help meetup organizers never much help comes running event offer hand help local organizers help make every event success
+
+questions get involved local vue community reach twitter vuejs events
+
+outline deep
+
+
+script setup
+import ref onmounted vue
+
+const version ref
+
+onmounted async
+const res await fetch
+version value await res json name
+
+script
+
+releases releases
+
+version
+current latest stable version vue strong version strong
+
+else
+checking latest version
+
+
+full changelog past releases available github
+
+release cycle release cycle
+
+vue fixed release cycle
+
+patch releases released needed
+
+minor releases always contain new features typical time frame months minor releases always go beta pre release phase
+
+major releases announced ahead time go early discussion phase alpha beta pre release phases
+
+semantic versioning edge cases semantic versioning edge cases
+
+vue releases follow semantic versioning edge cases
+
+typescript definitions typescript definitions
+
+may ship incompatible changes typescript definitions minor versions
+
+sometimes typescript ships incompatible changes minor versions may adjust types support newer versions typescript
+
+occasionally may need adopt features available newer version typescript raising minimum required version typescript
+
+using typescript use semver range locks current minor manually upgrade new minor version vue released
+
+compiled code compatibility older runtime compiled code compatibility older runtime
+
+newer minor version vue compiler may generate code compatible vue runtime older minor version example code generated vue compiler may fully compatible consumed runtime vue
+
+concern library authors applications compiler version runtime version always version mismatch happen ship pre compiled vue component code package consumer uses project using older version vue result package may need explicitly declare minimum required minor version vue
+
+pre releases pre releases
+
+minor releases typically go non fixed number beta releases major releases go alpha phase beta phase
+
+additionally publish canary releases every week main minor branches github published different packages avoid bloating npm metadata stable channel install via npx install vue canary npx install vue canary minor respectively
+
+pre releases meant integration stability testing early adopters provide feedback unstable features use pre releases production pre releases considered unstable may ship breaking changes always pin exact versions using pre releases
+
+deprecations deprecations
+
+may periodically deprecate features new better replacements minor releases deprecated features continue work removed next major release entered deprecated status
+
+rfcs rfcs
+
+new features substantial api surface major changes vue go request comments rfc process rfc process intended provide consistent controlled path new features enter framework give users opportunity participate offer feedback design process
+
+rfc process conducted vuejs rfcs repo github
+
+experimental features experimental features
+
+features shipped documented stable version vue marked experimental experimental features typically features associated rfc discussion design problems resolved paper still lacking feedback real world usage
+
+goal experimental features allow users provide feedback testing production setting without use unstable version vue experimental features considered unstable used controlled manner expectation feature may change release types
+priority rules essential priority rules essential
+
+rules help prevent errors learn abide costs exceptions may exist rare made expert knowledge javascript vue
+
+use multi word component names use multi word component names
+
+user component names always multi word except root app components prevents conflicts existing future html elements since html elements single word
+
+div class style example style example bad
+bad
+
+vue html
+pre compiled templates
+item
+
+dom templates
+item item
+
+
+div
+
+div class style example style example good
+good
+
+vue html
+pre compiled templates
+todoitem
+
+dom templates
+todo item todo item
+
+
+div
+
+use detailed prop definitions use detailed prop definitions
+
+committed code prop definitions always detailed possible specifying least type
+
+details detailed explanation
+detailed prop definitions guide components props prop validation two advantages
+
+document api component easy see component meant used
+development vue warn component ever provided incorrectly formatted props helping catch potential sources error
+
+
+div class options api
+
+div class style example style example bad
+bad
+
+js
+ok prototyping
+props status
+
+
+div
+
+div class style example style example good
+good
+
+js
+props
+status string
+
+
+
+js
+even better
+props
+status
+type string
+required true
+
+validator value
+return
+syncing
+synced
+version conflict
+error
+includes value
+
+
+
+
+
+div
+
+div
+
+div class composition api
+
+div class style example style example bad
+bad
+
+js
+ok prototyping
+const props defineprops status
+
+
+div
+
+div class style example style example good
+good
+
+js
+const props defineprops
+status string
+
+
+
+js
+even better
+
+const props defineprops
+status
+type string
+required true
+
+validator value
+return syncing synced version conflict error includes
+value
+
+
+
+
+
+
+div
+
+div
+
+use keyed use keyed
+
+key always required components order maintain internal component state subtree even elements though good practice maintain predictable behavior object constancy animations
+
+details detailed explanation
+let say list todos
+
+div class options api
+
+js
+data
+return
+todos
+
+id
+text learn use
+
+
+id
+text learn use key
+
+
+
+
+
+
+div
+
+div class composition api
+
+js
+const todos ref
+
+id
+text learn use
+
+
+id
+text learn use key
+
+
+
+
+div
+
+sort alphabetically updating dom vue optimize rendering perform cheapest dom mutations possible might mean deleting first todo element adding end list
+
+problem cases important delete elements remain dom example may want use transition group animate list sorting maintain focus rendered element input cases adding unique key item key todo id tell vue behave predictably
+
+experience better always add unique key team simply never worry edge cases rare performance critical scenarios object constancy necessary make conscious exception
+
+
+div class style example style example bad
+bad
+
+vue html
+ul
+li todo todos
+todo text
+li
+ul
+
+
+div
+
+div class style example style example good
+good
+
+vue html
+ul
+li
+todo todos
+key todo id
+
+todo text
+li
+ul
+
+
+div
+
+avoid avoid
+
+never use element
+
+two common cases tempting
+
+filter items list user users user isactive cases replace users new computed property returns filtered list activeusers
+
+avoid rendering list hidden user users shouldshowusers cases move container element ul ol
+
+details detailed explanation
+vue processes directives higher priority template
+
+vue html
+ul
+li
+user users
+user isactive
+key user id
+
+user name
+li
+ul
+
+
+throw error directive evaluated first iteration variable user exist moment
+
+could fixed iterating computed property instead like
+
+div class options api
+
+js
+computed
+activeusers
+return users filter user user isactive
+
+
+
+
+div
+
+div class composition api
+
+js
+const activeusers computed
+return users filter user user isactive
+
+
+
+div
+
+vue html
+ul
+li
+user activeusers
+key user id
+
+user name
+li
+ul
+
+
+alternatively use template tag wrap li element
+
+vue html
+ul
+template user users key user id
+li user isactive
+user name
+li
+template
+ul
+
+
+
+
+div class style example style example bad
+bad
+
+vue html
+ul
+li
+user users
+user isactive
+key user id
+
+user name
+li
+ul
+
+
+div
+
+div class style example style example good
+good
+
+vue html
+ul
+li
+user activeusers
+key user id
+
+user name
+li
+ul
+
+
+vue html
+ul
+template user users key user id
+li user isactive
+user name
+li
+template
+ul
+
+
+div
+
+use component scoped styling use component scoped styling
+
+applications styles top level app component layout components may global components always scoped
+
+relevant single file components guide scaling sfc require scoped attribute used scoping could css modules class based strategy bem another library convention
+
+component libraries however prefer class based strategy instead using scoped attribute
+
+makes overriding internal styles easier human readable class names high specificity still unlikely result conflict
+
+details detailed explanation
+developing large project working developers sometimes include rd party html css auth consistent scoping ensure styles apply components meant
+
+beyond scoped attribute using unique class names help ensure rd party css apply html example many projects use button btn icon class names even using strategy bem adding app specific component specific prefix buttonclose icon provide protection
+
+
+div class style example style example bad
+bad
+
+vue html
+template
+button class btn btn close button
+template
+
+style
+btn close
+background color red
+
+style
+
+
+div
+
+div class style example style example good
+good
+
+vue html
+template
+button class button button close button
+template
+
+using scoped attribute
+style scoped
+button
+border none
+border radius px
+
+
+button close
+background color red
+
+style
+
+
+vue html
+template
+button class style button style buttonclose button
+template
+
+using css modules
+style module
+button
+border none
+border radius px
+
+
+buttonclose
+background color red
+
+style
+
+
+vue html
+template
+button class button button close button
+template
+
+using bem convention
+style
+button
+border none
+border radius px
+
+
+button close
+background color red
+
+style
+
+
+div
+script setup
+import vtcodegroup vtcodegrouptab vue theme
+script
+
+testing testing
+
+test test
+
+automated tests help team build complex vue applications quickly confidently preventing regressions encouraging break apart application testable functions modules classes components application new vue app break many ways important catch issues fix releasing
+
+guide cover basic terminology provide recommendations tools choose vue application
+
+one vue specific section covering composables see testing composables testing composables details
+
+test test
+
+start testing early recommend begin writing tests soon longer wait add tests application dependencies application harder start
+
+testing types testing types
+
+designing vue application testing strategy leverage following testing types
+
+unit checks inputs given function class composable producing expected output side effects
+component checks component mounts renders interacted behaves expected tests import code unit tests complex require time execute
+end end checks features span multiple pages makes real network requests production built vue application tests often involve standing database backend
+
+testing type plays role application testing strategy protect different types issues
+
+overview overview
+
+briefly discuss implemented vue applications provide general recommendations
+
+unit testing unit testing
+
+unit tests written verify small isolated units code working expected unit test usually covers single function class composable module unit tests focus logical correctness concern small portion application overall functionality may mock large parts application environment initial state complex classes rd party modules network requests
+
+general unit tests catch issues function business logic logical correctness
+
+take example increment function
+
+js
+helpers js
+export function increment current max
+current max
+return current
+
+return current
+
+
+
+self contained easy invoke increment function assert returns supposed write unit test
+
+assertions fail clear issue contained within increment function
+
+js
+helpers spec js
+import increment helpers
+
+describe increment
+test increments current number
+expect increment tobe
+
+
+test increment current number max
+expect increment tobe
+
+
+test default max
+expect increment tobe
+
+
+
+
+mentioned previously unit testing typically applied self contained business logic components classes modules functions involve ui rendering network requests environmental concerns
+
+typically plain javascript typescript modules unrelated vue general writing unit tests business logic vue applications differ significantly applications using frameworks
+
+two instances unit test vue specific features
+
+composables
+components
+
+composables composables
+
+one category functions specific vue applications composables guide reusability composables may require special handling tests
+see testing composables testing composables details
+
+unit testing components unit testing components
+
+component tested two ways
+
+whitebox unit testing
+
+tests whitebox tests aware implementation details dependencies component focused isolating component test tests usually involve mocking component children well setting plugin state dependencies pinia
+
+blackbox component testing
+
+tests blackbox tests unaware implementation details component tests mock little possible test integration component entire system usually render child components considered integration test see component testing recommendations component testing
+
+recommendation recommendation
+
+vitest
+
+since official setup created create vue based vite recommend using unit testing framework leverage configuration transform pipeline directly vite vitest unit testing framework designed specifically purpose created maintained vue vite team members integrates vite based projects minimal effort blazing fast
+
+options options
+
+jest popular unit testing framework however recommend jest existing jest test suite needs migrated vite based project vitest offers seamless integration better performance
+
+component testing component testing
+
+vue applications components main building blocks ui components therefore natural unit isolation comes validating application behavior granularity perspective component testing sits somewhere unit testing considered form integration testing much vue application covered component test recommend vue component spec file
+
+component tests catch issues relating component props events slots provides styles classes lifecycle hooks
+
+component tests mock child components instead test interactions component children interacting components user would example component test click element like user would instead programmatically interacting component
+
+component tests focus component public interfaces rather internal implementation details components public interface limited events emitted props slots testing remember test component
+
+
+
+visual logic assert correct render output based inputted props slots
+behavioral logic assert correct render updates emitted events response user input events
+
+example demonstrate stepper component dom element labeled increment clicked pass prop called max prevents stepper incremented past click button times ui still say
+
+know nothing implementation stepper input max prop output state dom user see
+
+vtcodegroup
+vtcodegrouptab label vue test utils
+
+js
+const valueselector data testid stepper value
+const buttonselector data testid increment
+
+const wrapper mount stepper
+props
+max
+
+
+
+expect wrapper find valueselector text tocontain
+
+await wrapper find buttonselector trigger click
+
+expect wrapper find valueselector text tocontain
+
+
+vtcodegrouptab
+vtcodegrouptab label cypress
+
+js
+const valueselector data testid stepper value
+const buttonselector data testid increment
+
+mount stepper
+props
+max
+
+
+
+cy get valueselector visible contain text
+get buttonselector click
+get valueselector contain text
+
+
+vtcodegrouptab
+vtcodegrouptab label testing library
+
+js
+const getbytext render stepper
+props
+max
+
+
+
+getbytext implicit assertion within component
+
+const button getbyrole button name increment
+
+dispatch click event increment button
+await fireevent click button
+
+getbytext
+
+await fireevent click button
+
+
+vtcodegrouptab
+vtcodegroup
+
+
+
+assert private state component instance test private methods component testing implementation details makes tests brittle likely break require updates implementation changes
+
+component ultimate job rendering correct dom output tests focusing dom output provide level correctness assurance robust resilient change
+
+rely exclusively snapshot tests asserting html strings describe correctness write tests intentionality
+
+method needs tested thoroughly consider extracting standalone utility function write dedicated unit test cannot extracted cleanly may tested part component integration end end test covers
+
+recommendation recommendation
+
+vitest components composables render headlessly usefavicon function vueuse components dom tested using vue test utils
+
+cypress component testing components whose expected behavior depends properly rendering styles triggering native dom events used testing library via testing library cypress
+
+main differences vitest browser based runners speed execution context short browser based runners like cypress catch issues node based runners like vitest cannot style issues real native dom events cookies local storage network failures browser based runners orders magnitude slower vitest open browser compile stylesheets cypress browser based runner supports component testing please read vitest comparison page latest information comparing vitest cypress
+
+mounting libraries mounting libraries
+
+component testing often involves mounting component tested isolation triggering simulated user input events asserting rendered dom output dedicated utility libraries make tasks simpler
+
+vue test utils official low level component testing library written provide users access vue specific apis also lower level library testing library vue built top
+
+testing library vue vue testing library focused testing components without relying implementation details guiding principle tests resemble way software used confidence provide
+
+recommend using vue test utils testing components applications testing library vue issues testing asynchronous component suspense used caution
+
+options options
+
+nightwatch test runner vue component testing support example project
+
+webdriverio cross browser component testing relies native user interaction based standardized automation also used testing library
+
+testing testing
+
+unit tests provide developers degree confidence unit component tests limited abilities provide holistic coverage application deployed production result end end tests provide coverage arguably important aspect application happens users actually use applications
+
+end end tests focus multi page application behavior makes network requests production built vue application often involve standing database backend may even run live staging environment
+
+end end tests often catch issues router state management library top level components app layout public assets request handling stated catch critical issues may impossible catch unit tests component tests
+
+end end tests import vue application code instead rely completely testing application navigating entire pages real browser
+
+end end tests validate many layers application either target locally built application even live staging environment testing staging environment includes frontend code static server associated backend services infrastructure
+
+tests resemble software used confidence give kent dodds author testing library
+
+testing user actions impact application tests often key higher confidence whether application functioning properly
+
+choosing testing solution choosing testing solution
+
+end end testing web gained negative reputation unreliable flaky tests slowing development processes modern tools made strides forward create reliable interactive useful tests choosing testing framework following sections provide guidance things keep mind choosing testing framework application
+
+cross browser testing cross browser testing
+
+one primary benefits end end testing known ability test application across multiple browsers may seem desirable cross browser coverage important note cross browser testing diminishing returns team resources due additional time machine power required run consistently result important mindful trade choosing amount cross browser testing application needs
+
+faster feedback loops faster feedback loops
+
+one primary problems end end tests development running entire suite takes long time typically done continuous integration deployment ci cd pipelines modern testing frameworks helped solve adding features like parallelization allows ci cd pipelines often run magnitudes faster addition developing locally ability selectively run single test page working also providing hot reloading tests help boost developer workflow productivity
+
+first class debugging experience first class debugging experience
+
+developers traditionally relied scanning logs terminal window help determine went wrong test modern end end test frameworks allow developers leverage tools already familiar browser developer tools
+
+visibility headless mode visibility headless mode
+
+end end tests run continuous integration deployment pipelines often run headless browsers visible browser opened user watch critical feature modern testing frameworks ability see snapshots videos application testing providing insight errors happening historically tedious maintain integrations
+
+recommendation recommendation
+
+cypress
+
+overall believe cypress provides complete solution features like informative graphical interface excellent debuggability built assertions stubs flake resistance parallelization snapshots mentioned also provides support component testing however supports chromium based browsers firefox
+
+options options
+
+playwright also great testing solution wider range browser support mainly webkit see playwright details
+
+nightwatch testing solution based selenium webdriver gives widest browser support range
+
+webdriverio test automation framework web mobile testing based webdriver protocol
+
+recipes recipes
+
+adding vitest project adding vitest project
+
+vite based vue project run
+
+sh
+npm install vitest happy dom testing library vue
+
+
+next update vite configuration add test option block
+
+js
+vite config js
+import defineconfig vite
+
+export default defineconfig
+
+test
+enable jest like global test apis
+globals true
+simulate dom happy dom
+requires installing happy dom peer dependency
+environment happy dom
+
+
+
+
+tip
+use typescript add vitest globals types field tsconfig json
+
+json
+tsconfig json
+
+
+compileroptions
+types vitest globals
+
+
+
+
+
+
+create file ending test js project place test files test directory project root test directories next source files vitest automatically search using naming convention
+
+js
+mycomponent test js
+import render testing library vue
+import mycomponent mycomponent vue
+
+test work
+const getbytext render mycomponent
+props
+
+
+
+
+assert output
+getbytext
+
+
+
+finally update package json add test script run
+
+json
+
+
+scripts
+test vitest
+
+
+
+
+sh
+npm test
+
+
+testing composables testing composables
+
+section assumes read composables guide reusability composables section
+
+comes testing composables divide two categories composables rely host component instance composables
+
+composable depends host component instance uses following apis
+
+lifecycle hooks
+provide inject
+
+composable uses reactivity apis tested directly invoking asserting returned state methods
+
+js
+counter js
+import ref vue
+
+export function usecounter
+const count ref
+const increment count value
+
+return
+count
+increment
+
+
+
+
+js
+counter test js
+import usecounter counter js
+
+test usecounter
+const count increment usecounter
+expect count value tobe
+
+increment
+expect count value tobe
+
+
+
+composable relies lifecycle hooks provide inject needs wrapped host component tested create helper like following
+
+js
+test utils js
+import createapp vue
+
+export function withsetup composable
+let result
+const app createapp
+setup
+result composable
+suppress missing template warning
+return
+
+
+app mount document createelement div
+return result app instance
+testing provide unmount
+return result app
+
+
+
+js
+import withsetup test utils
+import usefoo foo
+
+test usefoo
+const result app withsetup usefoo
+mock provide testing injections
+app provide
+run assertions
+expect result foo value tobe
+trigger onunmounted hook needed
+app unmount
+
+
+
+complex composables could also easier test writing tests wrapper component using component testing component testing techniques
+
+
+todo testing recipes added future
+set ci via github actions
+mocking component testing
+
+production deployment production deployment
+
+development vs production development vs production
+
+development vue provides number features improve development experience
+
+warning common errors pitfalls
+props events validation
+reactivity debugging hooks guide extras reactivity depth reactivity debugging
+devtools integration
+
+however features become useless production warning checks also incur small amount performance overhead deploying production drop unused development code branches smaller payload size better performance
+
+without build tools without build tools
+
+using vue without build tool loading cdn self hosted script make sure use production build dist files end prod js deploying production production builds pre minified development code branches removed
+
+using global build accessing via vue global use vue global prod js
+using esm build accessing via native esm imports use vue esm browser prod js
+
+consult dist file guide details
+
+build tools build tools
+
+projects scaffolded via create vue based vite vue cli based webpack pre configured production builds
+
+using custom setup make sure
+
+vue resolves vue runtime esm bundler js
+compile time feature flags api compile time flags properly configured
+code process env wbr node env code replaced production build
+
+additional references
+
+vite production build guide
+vite deployment guide
+vue cli deployment guide
+
+tracking runtime errors tracking runtime errors
+
+app level error handler api application app config errorhandler used report errors tracking services
+
+js
+import createapp vue
+
+const app createapp
+
+app config errorhandler err instance info
+report error tracking services
+
+
+
+services sentry bugsnag also provide official integrations vue
+
+outline deep
+
+
+performance performance
+
+overview overview
+
+vue designed performant common use cases without much need manual optimizations however always challenging scenarios extra fine tuning needed section discuss pay attention comes performance vue application
+
+first let discuss two major aspects web performance
+
+page load performance fast application shows content becomes interactive initial visit usually measured using web vital metrics like largest contentful paint lcp first input delay fid
+
+update performance fast application updates response user input example fast list updates user types search box fast page switches user clicks navigation link single page application spa
+
+would ideal maximize different frontend architectures tend affect easy attain desired performance aspects addition type application building greatly influences prioritize terms performance therefore first step ensuring optimal performance picking right architecture type application building
+
+consult ways using vue guide extras ways using vue see leverage vue different ways
+
+jason miller discusses types web applications respective ideal implementation delivery application holotypes
+
+profiling options profiling options
+
+improve performance need first know measure number great tools help regard
+
+profiling load performance production deployments
+
+pagespeed insights
+webpagetest
+
+profiling performance local development
+
+chrome devtools performance panel
+app config performance api application app config performance enables vue specific performance markers chrome devtools performance timeline
+vue devtools extension guide scaling tooling browser devtools also provides performance profiling feature
+
+page load optimizations page load optimizations
+
+many framework agnostic aspects optimizing page load performance check web dev guide comprehensive round primarily focus techniques specific vue
+
+choosing right architecture choosing right architecture
+
+use case sensitive page load performance avoid shipping pure client side spa want server directly sending html containing content users want see pure client side rendering suffers slow time content mitigated server side rendering ssr guide extras ways using vue fullstack ssr static site generation ssg guide extras ways using vue jamstack ssg check ssr guide guide scaling ssr learn performing ssr vue app rich interactivity requirements also use traditional backend server render html enhance vue client
+
+main application spa marketing pages landing blog ship separately marketing pages ideally deployed static html minimal js using ssg
+
+bundle size tree shaking bundle size tree shaking
+
+one effective ways improve page load performance shipping smaller javascript bundles ways reduce bundle size using vue
+
+use build step possible
+
+many vue apis tree shakable bundled via modern build tool example use built transition component included final production bundle tree shaking also remove unused modules source code
+
+using build step templates pre compiled need ship vue compiler browser saves kb min gzipped javascript avoids runtime compilation cost
+
+cautious size introducing new dependencies real world applications bloated bundles often result introducing heavy dependencies without realizing
+
+using build step prefer dependencies offer es module formats tree shaking friendly example prefer lodash es lodash
+
+check dependency size evaluate whether worth functionality provides note dependency tree shaking friendly actual size increase depend apis actually import tools like bundlejs com used quick checks measuring actual build setup always accurate
+
+using vue primarily progressive enhancement prefer avoid build step consider using petite vue kb instead
+
+code splitting code splitting
+
+code splitting build tool splits application bundle multiple smaller chunks loaded demand parallel proper code splitting features required page load downloaded immediately additional chunks lazy loaded needed thus improving performance
+
+bundlers like rollup vite based upon webpack automatically create split chunks detecting esm dynamic import syntax
+
+js
+lazy js dependencies split separate chunk
+loaded loadlazy called
+function loadlazy
+return import lazy js
+
+
+
+lazy loading best used features immediately needed initial page load vue applications used combination vue async component guide components async feature create split chunks component trees
+
+js
+import defineasynccomponent vue
+
+separate chunk created foo vue dependencies
+fetched demand async component
+rendered page
+const foo defineasynccomponent import foo vue
+
+
+applications using vue router strongly recommended use lazy loading route components vue router explicit support lazy loading separate defineasynccomponent see lazy loading routes details
+
+update optimizations update optimizations
+
+props stability props stability
+
+vue child component updates least one received props changed consider following example
+
+vue html
+listitem
+item list
+id item id
+active id activeid
+
+
+inside listitem component uses id activeid props determine whether currently active item works problem whenever activeid changes every listitem list update
+
+ideally items whose active status changed update achieve moving active status computation parent make listitem directly accept active prop instead
+
+vue html
+listitem
+item list
+id item id
+active item id activeid
+
+
+components active prop remain activeid changes longer need update general idea keeping props passed child components stable possible
+
+
+
+built directive used render content relies runtime data never needs update entire sub tree used skipped future updates consult api reference api built directives details
+
+memo memo
+
+memo built directive used conditionally skip update large sub trees lists consult api reference api built directives memo details
+
+computed stability sup class vt badge data text computed stability
+
+starting computed property trigger effects computed value changed previous one example following iseven computed triggers effects returned value changed true false vice versa
+
+js
+const count ref
+const iseven computed count value
+
+watcheffect console log iseven value true
+
+trigger new logs computed value stays true
+count value
+count value
+
+
+reduces unnecessary effect triggers unfortunately work computed creates new object compute
+
+js
+const computedobj computed
+return
+iseven count value
+
+
+
+
+new object created time new value technically always different old value even iseven property remains vue able know unless performs deep comparison old value new value comparison could expensive likely worth
+
+instead optimize manually comparing new value old value conditionally returning old value know nothing changed
+
+js
+const computedobj computed oldvalue
+const newvalue
+iseven count value
+
+oldvalue oldvalue iseven newvalue iseven
+return oldvalue
+
+return newvalue
+
+
+
+playground example
+
+note always perform full computation comparing returning old value dependencies collected every run
+
+general optimizations general optimizations
+
+following tips affect page load update performance
+
+virtualize large lists virtualize large lists
+
+one common performance issues frontend applications rendering large lists matter performant framework rendering list thousands items slow due sheer number dom nodes browser needs handle
+
+however necessarily render nodes upfront cases user screen size display small subset large list greatly improve performance list virtualization technique rendering items currently close viewport large list
+
+implementing list virtualization easy luckily existing community libraries directly use
+
+vue virtual scroller
+vue virtual scroll grid
+vueuc vvirtuallist
+
+reduce reactivity overhead large immutable structures reduce reactivity overhead large immutable structures
+
+vue reactivity system deep default makes state management intuitive create certain level overhead data size large every property access triggers proxy traps perform dependency tracking typically becomes noticeable dealing large arrays deeply nested objects single render needs access properties affect specific use cases
+
+vue provide escape hatch opt deep reactivity using shallowref api reactivity advanced shallowref shallowreactive api reactivity advanced shallowreactive shallow apis create state reactive root level exposes nested objects untouched keeps nested property access fast trade must treat nested objects immutable updates triggered replacing root state
+
+js
+const shallowarray shallowref
+big list deep objects
+
+
+trigger updates
+shallowarray value push newobject
+
+shallowarray value shallowarray value newobject
+
+trigger updates
+shallowarray value foo
+
+shallowarray value
+
+shallowarray value
+foo
+
+shallowarray value slice
+
+
+
+avoid unnecessary component abstractions avoid unnecessary component abstractions
+
+sometimes may create renderless components guide components slots renderless components higher order components components render components extra props better abstraction code organization nothing wrong keep mind component instances much expensive plain dom nodes creating many due abstraction patterns incur performance costs
+
+note reducing instances noticeable effect sweat component rendered times app best scenario consider optimization large lists imagine list items item component contains many child components removing one unnecessary component abstraction could result reduction hundreds component instances
+slots slots
+
+page assumes already read components basics guide essentials component basics read first new components
+
+vueschoollink href title free vue js slots lesson
+
+slot content outlet slot content outlet
+
+learned components accept props javascript values type template content cases may want pass template fragment child component let child component render fragment within template
+
+example may fancybutton component supports usage like
+
+vue html
+fancybutton
+click slot content
+fancybutton
+
+
+template fancybutton looks like
+
+vue html
+button class fancy btn
+slot slot slot outlet
+button
+
+
+slot element slot outlet indicates parent provided slot content rendered
+
+slot diagram images slots png
+
+
+
+final rendered dom
+
+html
+button class fancy btn click button
+
+
+div class composition api
+
+try playground
+
+div
+div class options api
+
+try playground
+
+div
+
+slots fancybutton responsible rendering outer button fancy styling inner content provided parent component
+
+another way understand slots comparing javascript functions
+
+js
+parent component passing slot content
+fancybutton click
+
+fancybutton renders slot content template
+function fancybutton slotcontent
+return button class fancy btn
+slotcontent
+button
+
+
+
+slot content limited text valid template content example pass multiple elements even components
+
+vue html
+fancybutton
+span style color red click span
+awesomeicon name plus
+fancybutton
+
+
+div class composition api
+
+try playground
+
+div
+div class options api
+
+try playground
+
+div
+
+using slots fancybutton flexible reusable use different places different inner content fancy styling
+
+vue components slot mechanism inspired native web component slot element additional capabilities see later
+
+render scope render scope
+
+slot content access data scope parent component defined parent example
+
+vue html
+span message span
+fancybutton message fancybutton
+
+
+span pre message span interpolations render content
+
+slot content access child component data expressions vue templates access scope defined consistent javascript lexical scoping words
+
+expressions parent template access parent scope expressions child template access child scope
+
+fallback content fallback content
+
+cases useful specify fallback default content slot rendered content provided example submitbutton component
+
+vue html
+button type submit
+slot slot
+button
+
+
+might want text submit rendered inside button parent provide slot content make submit fallback content place slot tags
+
+vue html
+button type submit
+slot
+submit fallback content
+slot
+button
+
+
+use submitbutton parent component providing content slot
+
+vue html
+submitbutton
+
+
+render fallback content submit
+
+html
+button type submit submit button
+
+
+provide content
+
+vue html
+submitbutton save submitbutton
+
+
+provided content rendered instead
+
+html
+button type submit save button
+
+
+div class composition api
+
+try playground
+
+div
+div class options api
+
+try playground
+
+div
+
+named slots named slots
+
+times useful multiple slot outlets single component example baselayout component following template
+
+vue html
+div class container
+header
+want header content
+header
+main
+want main content
+main
+footer
+want footer content
+footer
+div
+
+
+cases slot element special attribute name used assign unique id different slots determine content rendered
+
+vue html
+div class container
+header
+slot name header slot
+header
+main
+slot slot
+main
+footer
+slot name footer slot
+footer
+div
+
+
+slot outlet without name implicitly name default
+
+parent component using baselayout need way pass multiple slot content fragments targeting different slot outlet named slots come
+
+pass named slot need use template element slot directive pass name slot argument slot
+
+vue html
+baselayout
+template slot header
+content header slot
+template
+baselayout
+
+
+slot dedicated shorthand template slot header shortened template header think render template fragment child component header slot
+
+named slots diagram images named slots png
+
+
+
+code passing content three slots baselayout using shorthand syntax
+
+vue html
+baselayout
+template header
+might page title
+template
+
+template default
+paragraph main content
+another one
+template
+
+template footer
+contact info
+template
+baselayout
+
+
+component accepts default slot named slots top level non template nodes implicitly treated content default slot also written
+
+vue html
+baselayout
+template header
+might page title
+template
+
+implicit default slot
+paragraph main content
+another one
+
+template footer
+contact info
+template
+baselayout
+
+
+everything inside template elements passed corresponding slots final rendered html
+
+html
+div class container
+header
+might page title
+header
+main
+paragraph main content
+another one
+main
+footer
+contact info
+footer
+div
+
+
+div class composition api
+
+try playground
+
+div
+div class options api
+
+try playground
+
+div
+
+may help understand named slots better using javascript function analogy
+
+js
+passing multiple slot fragments different names
+baselayout
+header
+default
+footer
+
+
+baselayout renders different places
+function baselayout slots
+return div class container
+header slots header header
+main slots default main
+footer slots footer footer
+div
+
+
+
+conditional slots conditional slots
+
+sometimes want render something based whether slot present
+
+use slots api component instance html slots property combination guide essentials conditional html achieve
+
+example define card component two conditional slots header footer
+header footer present want wrap provide additional styling
+
+vue html
+template
+div class card
+div slots header class card header
+slot name header
+div
+
+div class card content
+slot
+div
+
+div slots footer class card footer
+slot name footer
+div
+div
+template
+
+
+try playground
+
+dynamic slot names dynamic slot names
+
+dynamic directive arguments guide essentials template syntax md dynamic arguments also work slot allowing definition dynamic slot names
+
+vue html
+base layout
+template slot dynamicslotname
+
+template
+
+shorthand
+template dynamicslotname
+
+template
+base layout
+
+
+note expression subject syntax constraints guide essentials template syntax md dynamic argument syntax constraints dynamic directive arguments
+
+scoped slots scoped slots
+
+discussed render scope render scope slot content access state child component
+
+however cases could useful slot content make use data parent scope child scope achieve need way child pass data slot rendering
+
+fact exactly pass attributes slot outlet like passing props component
+
+vue html
+mycomponent template
+div
+slot text greetingmessage count slot
+div
+
+
+receiving slot props bit different using single default slot vs using named slots going show receive props using single default slot first using slot directly child component tag
+
+vue html
+mycomponent slot slotprops
+slotprops text slotprops count
+mycomponent
+
+
+scoped slots diagram images scoped slots svg
+
+
+
+div class composition api
+
+try playground
+
+div
+div class options api
+
+try playground
+
+div
+
+props passed slot child available value corresponding slot directive accessed expressions inside slot
+
+think scoped slot function passed child component child component calls passing props arguments
+
+js
+mycomponent
+passing default slot function
+default slotprops
+return slotprops text slotprops count
+
+
+
+function mycomponent slots
+const greetingmessage hello
+return div
+call slot function props
+slots default text greetingmessage count
+div
+
+
+
+fact close scoped slots compiled would use scoped slots manual render functions guide extras render function
+
+notice slot slotprops matches slot function signature like function arguments use destructuring slot
+
+vue html
+mycomponent slot text count
+text count
+mycomponent
+
+
+named scoped slots named scoped slots
+
+named scoped slots work similarly slot props accessible value slot directive slot name slotprops using shorthand looks like
+
+vue html
+mycomponent
+template header headerprops
+headerprops
+template
+
+template default defaultprops
+defaultprops
+template
+
+template footer footerprops
+footerprops
+template
+mycomponent
+
+
+passing props named slot
+
+vue html
+slot name header message hello slot
+
+
+note name slot included props reserved resulting headerprops would message hello
+
+mixing named slots default scoped slot need use explicit template tag default slot attempting place slot directive directly component result compilation error avoid ambiguity scope props default slot example
+
+vue html
+template compile
+template
+mycomponent slot message
+message
+template footer
+message belongs default slot available
+message
+template
+mycomponent
+template
+
+
+using explicit template tag default slot helps make clear message prop available inside slot
+
+vue html
+template
+mycomponent
+use explicit default slot
+template default message
+message
+template
+
+template footer
+contact info
+template
+mycomponent
+template
+
+
+fancy list example fancy list example
+
+may wondering would good use case scoped slots example imagine fancylist component renders list items may encapsulate logic loading remote data using data display list even advanced features like pagination infinite scrolling however want flexible item looks leave styling item parent component consuming desired usage may look like
+
+vue html
+fancylist api url url per page
+template item body username likes
+div class item
+body
+username likes likes
+div
+template
+fancylist
+
+
+inside fancylist render slot multiple times different item data notice using bind pass object slot props
+
+vue html
+ul
+li item items
+slot name item bind item slot
+li
+ul
+
+
+div class composition api
+
+try playground
+
+div
+div class options api
+
+try playground
+
+div
+
+renderless components renderless components
+
+fancylist use case discussed encapsulates reusable logic data fetching pagination etc visual output delegating part visual output consumer component via scoped slots
+
+push concept bit come components encapsulate logic render anything visual output fully delegated consumer component scoped slots call type component renderless component
+
+example renderless component could one encapsulates logic tracking current mouse position
+
+vue html
+mousetracker slot
+mouse
+mousetracker
+
+
+div class composition api
+
+try playground
+
+div
+div class options api
+
+try playground
+
+div
+
+interesting pattern achieved renderless components achieved efficient fashion composition api without incurring overhead extra component nesting later see implement mouse tracking functionality composable guide reusability composables
+
+said scoped slots still useful cases need encapsulate logic compose visual output like fancylist example
+priority rules strongly recommended priority rules strongly recommended
+
+rules found improve readability developer experience projects code still run violate violations rare well justified
+
+component files component files
+
+whenever build system available concatenate files component file
+
+helps quickly find component need edit review use
+
+div class style example style example bad
+bad
+
+js
+app component todolist
+
+
+
+app component todoitem
+
+
+
+
+div
+
+div class style example style example good
+good
+
+
+components
+todolist js
+todoitem js
+
+
+
+components
+todolist vue
+todoitem vue
+
+
+div
+
+single file component filename casing single file component filename casing
+
+filenames single file components guide scaling sfc either always pascalcase always kebab case
+
+pascalcase works best autocompletion code editors consistent reference components js templates wherever possible however mixed case filenames sometimes create issues case insensitive file systems kebab case also perfectly acceptable
+
+div class style example style example bad
+bad
+
+
+components
+mycomponent vue
+
+
+
+components
+mycomponent vue
+
+
+div
+
+div class style example style example good
+good
+
+
+components
+mycomponent vue
+
+
+
+components
+component vue
+
+
+div
+
+base component names base component names
+
+base components presentational dumb pure components apply app specific styling conventions begin specific prefix base app
+
+details detailed explanation
+components lay foundation consistent styling behavior application may contain
+
+html elements
+base components
+rd party ui components
+
+never contain global state pinia store
+
+names often include name element wrap basebutton basetable unless element exists specific purpose baseicon build similar components specific context almost always consume components basebutton may used buttonsubmit
+
+advantages convention
+
+organized alphabetically editors app base components listed together making easier identify
+
+since component names always multi word convention prevents choose arbitrary prefix simple component wrappers mybutton vuebutton
+
+since components frequently used may want simply make global instead importing everywhere prefix makes possible webpack
+
+js
+const requirecomponent require context
+src
+true
+base vue js
+
+requirecomponent keys foreach function filename
+let basecomponentconfig requirecomponent filename
+basecomponentconfig
+basecomponentconfig default basecomponentconfig
+const basecomponentname
+basecomponentconfig name
+filename replace replace
+app component basecomponentname basecomponentconfig
+
+
+
+
+
+div class style example style example bad
+bad
+
+
+components
+mybutton vue
+vuetable vue
+icon vue
+
+
+div
+
+div class style example style example good
+good
+
+
+components
+basebutton vue
+basetable vue
+baseicon vue
+
+
+
+components
+appbutton vue
+apptable vue
+appicon vue
+
+
+
+components
+vbutton vue
+vtable vue
+vicon vue
+
+
+div
+
+tightly coupled component names tightly coupled component names
+
+child components tightly coupled parent include parent component name prefix
+
+component makes sense context single parent component relationship evident name since editors typically organize files alphabetically also keeps related files next
+
+details detailed explanation
+might tempted solve problem nesting child components directories named parent example
+
+
+components
+todolist
+item
+index vue
+button vue
+index vue
+
+
+
+
+
+components
+todolist
+item
+button vue
+item vue
+todolist vue
+
+
+recommended results
+
+many files similar names making rapid file switching code editors difficult
+many nested sub directories increases time takes browse components editor sidebar
+
+
+div class style example style example bad
+bad
+
+
+components
+todolist vue
+todoitem vue
+todobutton vue
+
+
+
+components
+searchsidebar vue
+navigationforsearchsidebar vue
+
+
+div
+
+div class style example style example good
+good
+
+
+components
+todolist vue
+todolistitem vue
+todolistitembutton vue
+
+
+
+components
+searchsidebar vue
+searchsidebarnavigation vue
+
+
+div
+
+order words component names order words component names
+
+component names start highest level often general words end descriptive modifying words
+
+details detailed explanation
+may wondering
+
+would force component names use less natural language
+
+natural english adjectives descriptors typically appear nouns exceptions require connector words example
+
+coffee milk
+soup day
+visitor museum
+
+definitely include connector words component names like order still important
+
+also note considered highest level contextual app example imagine app search form may include components like one
+
+
+components
+clearsearchbutton vue
+excludefromsearchinput vue
+launchonstartupcheckbox vue
+runsearchbutton vue
+searchinput vue
+termscheckbox vue
+
+
+might notice quite difficult see components specific search let rename components according rule
+
+
+components
+searchbuttonclear vue
+searchbuttonrun vue
+searchinputexcludeglob vue
+searchinputquery vue
+settingscheckboxlaunchonstartup vue
+settingscheckboxterms vue
+
+
+since editors typically organize files alphabetically important relationships components evident glance
+
+might tempted solve problem differently nesting search components search directory settings components settings directory recommend considering approach large apps components reasons
+
+generally takes time navigate nested sub directories scrolling single components directory
+name conflicts multiple buttondelete vue components make difficult quickly navigate specific component code editor
+refactoring becomes difficult find replace often sufficient update relative references moved component
+
+
+div class style example style example bad
+bad
+
+
+components
+clearsearchbutton vue
+excludefromsearchinput vue
+launchonstartupcheckbox vue
+runsearchbutton vue
+searchinput vue
+termscheckbox vue
+
+
+div
+
+div class style example style example good
+good
+
+
+components
+searchbuttonclear vue
+searchbuttonrun vue
+searchinputquery vue
+searchinputexcludeglob vue
+settingscheckboxterms vue
+settingscheckboxlaunchonstartup vue
+
+
+div
+
+self closing components self closing components
+
+components content self closing single file components guide scaling sfc string templates jsx guide extras render function jsx tsx never dom templates
+
+components self close communicate content meant content difference blank page book one labeled page intentionally left blank code also cleaner without unnecessary closing tag
+
+unfortunately html allow custom elements self closing official void elements strategy possible vue template compiler reach template dom serve dom spec compliant html
+
+div class style example style example bad
+bad
+
+vue html
+single file components string templates jsx
+mycomponent mycomponent
+
+
+vue html
+dom templates
+component
+
+
+div
+
+div class style example style example good
+good
+
+vue html
+single file components string templates jsx
+mycomponent
+
+
+vue html
+dom templates
+component component
+
+
+div
+
+component name casing templates component name casing templates
+
+projects component names always pascalcase single file components guide scaling sfc string templates kebab case dom templates
+
+pascalcase advantages kebab case
+
+editors autocomplete component names templates pascalcase also used javascript
+mycomponent visually distinct single word html element component two character differences two capitals rather one hyphen
+use non vue custom elements templates web component pascalcase ensures vue components remain distinctly visible
+
+unfortunately due html case insensitivity dom templates must still use kebab case
+
+also note already invested heavily kebab case consistency html conventions able use casing across projects may important advantages listed cases using kebab case everywhere also acceptable
+
+div class style example style example bad
+bad
+
+vue html
+single file components string templates
+mycomponent
+
+
+vue html
+single file components string templates
+mycomponent
+
+
+vue html
+dom templates
+mycomponent mycomponent
+
+
+div
+
+div class style example style example good
+good
+
+vue html
+single file components string templates
+mycomponent
+
+
+vue html
+dom templates
+component component
+
+
+
+
+vue html
+everywhere
+component component
+
+
+div
+
+component name casing js jsx component name casing js jsx
+
+component names js jsx guide extras render function jsx tsx always pascalcase though may kebab case inside strings simpler applications use global component registration app component
+
+details detailed explanation
+javascript pascalcase convention classes prototype constructors essentially anything distinct instances vue components also instances makes sense also use pascalcase added benefit using pascalcase within jsx templates allows readers code easily distinguish components html elements
+
+however applications use global component definitions via app component recommend kebab case instead reasons
+
+rare global components ever referenced javascript following convention javascript makes less sense
+applications always include many dom templates kebab case must used component name casing templates
+
+
+div class style example style example bad
+bad
+
+js
+app component mycomponent
+
+
+
+
+js
+import mycomponent mycomponent vue
+
+
+js
+export default
+name mycomponent
+
+
+
+
+js
+export default
+name component
+
+
+
+
+div
+
+div class style example style example good
+good
+
+js
+app component mycomponent
+
+
+
+
+js
+app component component
+
+
+
+
+js
+import mycomponent mycomponent vue
+
+
+js
+export default
+name mycomponent
+
+
+
+
+div
+
+full word component names full word component names
+
+component names prefer full words abbreviations
+
+autocompletion editors make cost writing longer names low clarity provide invaluable uncommon abbreviations particular always avoided
+
+div class style example style example bad
+bad
+
+
+components
+sdsettings vue
+uprofopts vue
+
+
+div
+
+div class style example style example good
+good
+
+
+components
+studentdashboardsettings vue
+userprofileoptions vue
+
+
+div
+
+prop name casing prop name casing
+
+prop names always use camelcase declaration used inside dom templates props kebab cased single file components templates jsx guide extras render function jsx tsx use either kebab case camelcase props casing consistent choose use camelcased props make sure use kebab cased ones application
+
+div class style example style example bad
+bad
+
+div class options api
+
+js
+props
+greeting text string
+
+
+
+div
+
+div class composition api
+
+js
+const props defineprops
+greeting text string
+
+
+
+div
+
+vue html
+dom templates
+welcome message greetingtext hi welcome message
+
+
+div
+
+div class style example style example good
+good
+
+div class options api
+
+js
+props
+greetingtext string
+
+
+
+div
+
+div class composition api
+
+js
+const props defineprops
+greetingtext string
+
+
+
+div
+
+vue html
+sfc please make sure casing consistent throughout project
+use either convention recommend mixing two different casing styles
+welcomemessage greeting text hi
+
+welcomemessage greetingtext hi
+
+
+vue html
+dom templates
+welcome message greeting text hi welcome message
+
+
+div
+
+multi attribute elements multi attribute elements
+
+elements multiple attributes span multiple lines one attribute per line
+
+javascript splitting objects multiple properties multiple lines widely considered good convention much easier read templates jsx guide extras render function jsx tsx deserve consideration
+
+div class style example style example bad
+bad
+
+vue html
+img src alt vue logo
+
+
+vue html
+mycomponent foo bar baz
+
+
+div
+
+div class style example style example good
+good
+
+vue html
+img
+src
+alt vue logo
+
+
+
+vue html
+mycomponent
+foo
+bar
+baz
+
+
+
+div
+
+simple expressions templates simple expressions templates
+
+component templates include simple expressions complex expressions refactored computed properties methods
+
+complex expressions templates make less declarative strive describe appear computing value computed properties methods also allow code reused
+
+div class style example style example bad
+bad
+
+vue html
+
+fullname split map word
+return word touppercase word slice
+join
+
+
+
+div
+
+div class style example style example good
+good
+
+vue html
+template
+normalizedfullname
+
+
+div class options api
+
+js
+complex expression moved computed property
+computed
+normalizedfullname
+return fullname split
+map word word touppercase word slice
+join
+
+
+
+
+div
+
+div class composition api
+
+js
+complex expression moved computed property
+const normalizedfullname computed
+fullname value
+split
+map word word touppercase word slice
+join
+
+
+
+div
+
+div
+
+simple computed properties simple computed properties
+
+complex computed properties split many simpler properties possible
+
+details detailed explanation
+simpler well named computed properties
+
+easier test
+
+computed property contains simple expression dependencies much easier write tests confirming works correctly
+
+easier read
+
+simplifying computed properties forces give value descriptive name even reused makes much easier developers future focus code care figure going
+
+adaptable changing requirements
+
+value named might useful view example might decide display message telling user much money saved might also decide calculate sales tax perhaps display separately rather part final price
+
+small focused computed properties make fewer assumptions information used require less refactoring requirements change
+
+
+div class style example style example bad
+bad
+
+div class options api
+
+js
+computed
+price
+const baseprice manufacturecost profitmargin
+return
+baseprice
+baseprice discountpercent
+
+
+
+
+
+div
+
+div class composition api
+
+js
+const price computed
+const baseprice manufacturecost value profitmargin value
+return baseprice baseprice discountpercent value
+
+
+
+div
+
+div
+
+div class style example style example good
+good
+
+div class options api
+
+js
+computed
+baseprice
+return manufacturecost profitmargin
+
+
+discount
+return baseprice discountpercent
+
+
+finalprice
+return baseprice discount
+
+
+
+
+div
+
+div class composition api
+
+js
+const baseprice computed
+manufacturecost value profitmargin value
+
+
+const discount computed
+baseprice value discountpercent value
+
+
+const finalprice computed baseprice value discount value
+
+
+div
+
+div
+
+quoted attribute values quoted attribute values
+
+non empty html attribute values always inside quotes single double whichever used js
+
+attribute values without spaces required quotes html practice often leads avoiding spaces making attribute values less readable
+
+div class style example style example bad
+bad
+
+vue html
+input type text
+
+
+vue html
+appsidebar style width sidebarwidth px
+
+
+div
+
+div class style example style example good
+good
+
+vue html
+input type text
+
+
+vue html
+appsidebar style width sidebarwidth px
+
+
+div
+
+directive shorthands directive shorthands
+
+directive shorthands bind slot used always never
+
+div class style example style example bad
+bad
+
+vue html
+input
+bind value newtodotext
+placeholder newtodoinstructions
+
+
+
+vue html
+input
+input oninput
+focus onfocus
+
+
+
+vue html
+template slot header
+might page title
+template
+
+template footer
+contact info
+template
+
+
+div
+
+div class style example style example good
+good
+
+vue html
+input
+value newtodotext
+placeholder newtodoinstructions
+
+
+
+vue html
+input
+bind value newtodotext
+bind placeholder newtodoinstructions
+
+
+
+vue html
+input
+input oninput
+focus onfocus
+
+
+
+vue html
+input
+input oninput
+focus onfocus
+
+
+
+vue html
+template slot header
+might page title
+template
+
+template slot footer
+contact info
+template
+
+
+vue html
+template header
+might page title
+template
+
+template footer
+contact info
+template
+
+
+div
+
+outline deep
+
+
+suspense suspense
+
+warning experimental feature
+suspense experimental feature guaranteed reach stable status api may change
+
+
+suspense built component orchestrating async dependencies component tree render loading state waiting multiple nested async dependencies component tree resolved
+
+async dependencies async dependencies
+
+explain problem suspense trying solve interacts async dependencies let imagine component hierarchy like following
+
+
+suspense
+dashboard
+profile
+friendstatus component async setup
+content
+activityfeed async component
+stats async component
+
+
+component tree multiple nested components whose rendering depends async resource resolved first without suspense need handle loading error loaded states worst case scenario may see three loading spinners page content displayed different times
+
+suspense component gives us ability display top level loading error states wait nested async dependencies resolved
+
+two types async dependencies suspense wait
+
+components async setup hook includes components using script setup top level await expressions
+
+async components guide components async
+
+async setup async setup
+
+composition api component setup hook async
+
+js
+export default
+async setup
+const res await fetch
+const posts await res json
+return
+posts
+
+
+
+
+
+using script setup presence top level await expressions automatically makes component async dependency
+
+vue
+script setup
+const res await fetch
+const posts await res json
+script
+
+template
+posts
+template
+
+
+async components async components
+
+async components suspensible default means suspense parent chain treated async dependency suspense case loading state controlled suspense component loading error delay timeout options ignored
+
+async component opt suspense control let component always control loading state specifying suspensible false options
+
+loading state loading state
+
+suspense component two slots default fallback slots allow one immediate child node node default slot shown possible node fallback slot shown instead
+
+vue html
+suspense
+component nested async dependencies
+dashboard
+
+loading state via fallback slot
+template fallback
+loading
+template
+suspense
+
+
+initial render suspense render default slot content memory async dependencies encountered process enter pending state pending state fallback content displayed encountered async dependencies resolved suspense enters resolved state resolved default slot content displayed
+
+async dependencies encountered initial render suspense directly go resolved state
+
+resolved state suspense revert pending state root node default slot replaced new async dependencies nested deeper tree cause suspense revert pending state
+
+revert happens fallback content immediately displayed instead suspense display previous default content waiting new content async dependencies resolved behavior configured timeout prop suspense switch fallback content takes longer timeout render new default content timeout value cause fallback content displayed immediately default content replaced
+
+events events
+
+suspense component emits events pending resolve fallback pending event occurs entering pending state resolve event emitted new content finished resolving default slot fallback event fired contents fallback slot shown
+
+events could used example show loading indicator front old dom new components loading
+
+error handling error handling
+
+suspense currently provide error handling via component however use errorcaptured api options lifecycle errorcaptured option onerrorcaptured api composition api lifecycle onerrorcaptured hook capture handle async errors parent component suspense
+
+combining components combining components
+
+common want use suspense combination transition transition keepalive keep alive components nesting order components important get working correctly
+
+addition components often used conjunction routerview component vue router
+
+following example shows nest components behave expected simpler combinations remove components need
+
+vue html
+routerview slot component
+template component
+transition mode
+keepalive
+suspense
+main content
+component component component
+
+loading state
+template fallback
+loading
+template
+suspense
+keepalive
+transition
+template
+routerview
+
+
+vue router built support lazily loading components using dynamic imports distinct async components currently trigger suspense however still async components descendants trigger suspense usual way
+
+nested suspense
+
+multiple async components common nested layout based routes like
+
+vue html
+suspense
+component dynamicasyncouter
+component dynamicasyncinner
+component
+suspense
+
+
+suspense creates boundary resolve async components tree
+expected however change dynamicasyncouter suspense awaits correctly change dynamicasyncinner
+nested dynamicasyncinner renders empty node resolved instead previous one fallback slot
+
+order solve could nested suspense handle patch nested component like
+
+vue html
+suspense
+component dynamicasyncouter
+suspense suspensible
+component dynamicasyncinner
+suspense
+component
+suspense
+
+
+set suspensible prop inner suspense treated like sync component parent suspense
+means fallback slot dynamic components change time
+might empty nodes multiple patching cycles child suspense loading dependency tree
+might desirable set async dependency handling given parent suspense including events emitted
+inner suspense serves solely another boundary dependency resolution patching
+
+
+
+related
+
+suspense api reference api built components suspense
+single file components single file components
+
+introduction introduction
+
+vue single file components vue files abbreviated sfc special file format allows us encapsulate template logic styling vue component single file example sfc
+
+div class options api
+
+vue
+script
+export default
+data
+return
+greeting hello world
+
+
+
+script
+
+template
+class greeting greeting
+template
+
+style
+greeting
+color red
+font weight bold
+
+style
+
+
+div
+
+div class composition api
+
+vue
+script setup
+import ref vue
+const greeting ref hello world
+script
+
+template
+class greeting greeting
+template
+
+style
+greeting
+color red
+font weight bold
+
+style
+
+
+div
+
+see vue sfc natural extension classic trio html css javascript template script style blocks encapsulate colocate view logic styling component file full syntax defined sfc syntax specification api sfc spec
+
+sfc sfc
+
+sfcs require build step numerous benefits return
+
+author modularized components using familiar html css javascript syntax
+colocation inherently coupled concerns separation concerns
+pre compiled templates without runtime compilation cost
+component scoped css api sfc css features
+ergonomic syntax working composition api api sfc script setup
+compile time optimizations cross analyzing template script
+ide support guide scaling tooling ide support auto completion type checking template expressions
+box hot module replacement hmr support
+
+sfc defining feature vue framework recommended approach using vue following scenarios
+
+single page applications spa
+static site generation ssg
+non trivial frontend build step justified better development experience dx
+
+said realize scenarios sfcs feel like overkill vue still used via plain javascript without build step looking enhancing largely static html light interactions also check petite vue kb subset vue optimized progressive enhancement
+
+works works
+
+vue sfc framework specific file format must pre compiled vue compiler sfc standard javascript css compiled sfc standard javascript es module means proper build setup import sfc like module
+
+js
+import mycomponent mycomponent vue
+
+export default
+components
+mycomponent
+
+
+
+
+style tags inside sfcs typically injected native style tags development support hot updates production extracted merged single css file
+
+play sfcs explore compiled vue sfc playground
+
+actual projects typically integrate sfc compiler build tool vite vue cli based webpack vue provides official scaffolding tools get started sfcs fast possible check details sfc tooling guide scaling tooling section
+
+separation concerns separation concerns
+
+users coming traditional web development background may concern sfcs mixing different concerns place html css js supposed separate
+
+answer question important us agree separation concerns equal separation file types ultimate goal engineering principles improve maintainability codebases separation concerns applied dogmatically separation file types help us reach goal context increasingly complex frontend applications
+
+modern ui development found instead dividing codebase three huge layers interweave one another makes much sense divide loosely coupled components compose inside component template logic styles inherently coupled colocating actually makes component cohesive maintainable
+
+note even like idea single file components still leverage hot reloading pre compilation features separating javascript css separate files using src imports api sfc spec src imports
+props props
+
+page assumes already read components basics guide essentials component basics read first new components
+
+div class options api
+vueschoollink href title free vue js props lesson
+div
+
+props declaration props declaration
+
+vue components require explicit props declaration vue knows external props passed component treated fallthrough attributes discussed dedicated section guide components attrs
+
+div class composition api
+
+sfcs using script setup props declared using defineprops macro
+
+vue
+script setup
+const props defineprops foo
+
+console log props foo
+script
+
+
+non script setup components props declared using props api options state props option
+
+js
+export default
+props foo
+setup props
+setup receives props first argument
+console log props foo
+
+
+
+
+notice argument passed defineprops value provided props options props options api shared two declaration styles
+
+div
+
+div class options api
+
+props declared using props api options state props option
+
+js
+export default
+props foo
+created
+props exposed
+console log foo
+
+
+
+
+div
+
+addition declaring props using array strings also use object syntax
+
+div class options api
+
+js
+export default
+props
+title string
+likes number
+
+
+
+
+div
+div class composition api
+
+js
+script setup
+defineprops
+title string
+likes number
+
+
+
+js
+non script setup
+export default
+props
+title string
+likes number
+
+
+
+
+div
+
+property object declaration syntax key name prop value constructor function expected type
+
+documents component also warn developers using component browser console pass wrong type discuss details prop validation prop validation page
+
+div class options api
+
+see also typing component props guide typescript options api typing component props sup class vt badge ts
+
+div
+
+div class composition api
+
+using typescript script setup also possible declare props using pure type annotations
+
+vue
+script setup lang ts
+defineprops
+title string
+likes number
+
+script
+
+
+details typing component props guide typescript composition api typing component props sup class vt badge ts
+
+div
+
+prop passing details prop passing details
+
+prop name casing prop name casing
+
+declare long prop names using camelcase avoids use quotes using property keys allows us reference directly template expressions valid javascript identifiers
+
+div class composition api
+
+js
+defineprops
+greetingmessage string
+
+
+
+div
+div class options api
+
+js
+export default
+props
+greetingmessage string
+
+
+
+
+div
+
+vue html
+span greetingmessage span
+
+
+technically also use camelcase passing props child component except dom templates guide essentials component basics dom template parsing caveats however convention using kebab case cases align html attributes
+
+vue html
+mycomponent greeting message hello
+
+
+use pascalcase component tags guide components registration component name casing possible improves template readability differentiating vue components native elements however much practical benefit using camelcase passing props choose follow language conventions
+
+static vs dynamic props static vs dynamic props
+
+far seen props passed static values like
+
+vue html
+blogpost title journey vue
+
+
+also seen props assigned dynamically bind shortcut
+
+vue html
+dynamically assign value variable
+blogpost title post title
+
+dynamically assign value complex expression
+blogpost title post title post author name
+
+
+passing different value types passing different value types
+
+two examples happen pass string values type value passed prop
+
+number number
+
+vue html
+even though static need bind tell vue
+javascript expression rather string
+blogpost likes
+
+dynamically assign value variable
+blogpost likes post likes
+
+
+boolean boolean
+
+vue html
+including prop value imply true
+blogpost published
+
+even though false static need bind tell vue
+javascript expression rather string
+blogpost published false
+
+dynamically assign value variable
+blogpost published post ispublished
+
+
+array array
+
+vue html
+even though array static need bind tell vue
+javascript expression rather string
+blogpost comment ids
+
+dynamically assign value variable
+blogpost comment ids post commentids
+
+
+object object
+
+vue html
+even though object static need bind tell vue
+javascript expression rather string
+blogpost
+author
+name veronica
+company veridian dynamics
+
+
+
+dynamically assign value variable
+blogpost author post author
+
+
+binding multiple properties using object binding multiple properties using object
+
+want pass properties object props use bind without argument guide essentials template syntax dynamically binding multiple attributes bind instead prop name example given post object
+
+div class options api
+
+js
+export default
+data
+return
+post
+id
+title journey vue
+
+
+
+
+
+
+div
+div class composition api
+
+js
+const post
+id
+title journey vue
+
+
+
+div
+
+following template
+
+vue html
+blogpost bind post
+
+
+equivalent
+
+vue html
+blogpost id post id title post title
+
+
+one way data flow one way data flow
+
+props form one way binding child property parent one parent property updates flow child way around prevents child components accidentally mutating parent state make app data flow harder understand
+
+addition every time parent component updated props child component refreshed latest value means attempt mutate prop inside child component vue warn console
+
+div class composition api
+
+js
+const props defineprops foo
+
+warning props readonly
+props foo bar
+
+
+div
+div class options api
+
+js
+export default
+props foo
+created
+warning props readonly
+foo bar
+
+
+
+
+div
+
+usually two cases tempting mutate prop
+
+prop used pass initial value child component wants use local data property afterwards case best define local data property uses prop initial value
+
+div class composition api
+
+js
+const props defineprops initialcounter
+
+counter uses props initialcounter initial value
+disconnected future prop updates
+const counter ref props initialcounter
+
+
+div
+div class options api
+
+js
+export default
+props initialcounter
+data
+return
+counter uses initialcounter initial value
+disconnected future prop updates
+counter initialcounter
+
+
+
+
+
+div
+
+prop passed raw value needs transformed case best define computed property using prop value
+
+div class composition api
+
+js
+const props defineprops size
+
+computed property auto updates prop changes
+const normalizedsize computed props size trim tolowercase
+
+
+div
+div class options api
+
+js
+export default
+props size
+computed
+computed property auto updates prop changes
+normalizedsize
+return size trim tolowercase
+
+
+
+
+
+div
+
+mutating object array props mutating object array props
+
+objects arrays passed props child component cannot mutate prop binding able mutate object array nested properties javascript objects arrays passed reference unreasonably expensive vue prevent mutations
+
+main drawback mutations allows child component affect parent state way obvious parent component potentially making difficult reason data flow future best practice avoid mutations unless parent child tightly coupled design cases child emit event guide components events let parent perform mutation
+
+prop validation prop validation
+
+components specify requirements props types already seen requirement met vue warn browser javascript console especially useful developing component intended used others
+
+specify prop validations provide object validation requirements span class composition api defineprops macro span span class options api props option span instead array strings example
+
+div class composition api
+
+js
+defineprops
+basic type check
+null undefined values allow type
+propa number
+multiple possible types
+propb string number
+required string
+propc
+type string
+required true
+
+number default value
+propd
+type number
+default
+
+object default value
+prope
+type object
+object array defaults must returned
+factory function function receives raw
+props received component argument
+default rawprops
+return message hello
+
+
+custom validator function
+full props passed nd argument
+propf
+validator value props
+value must match one strings
+return success warning danger includes value
+
+
+function default value
+propg
+type function
+unlike object array default factory
+function function serve default value
+default
+return default function
+
+
+
+
+
+tip
+code inside defineprops argument cannot access variables declared script setup entire expression moved outer function scope compiled
+
+
+div
+div class options api
+
+js
+export default
+props
+basic type check
+null undefined values allow type
+propa number
+multiple possible types
+propb string number
+required string
+propc
+type string
+required true
+
+number default value
+propd
+type number
+default
+
+object default value
+prope
+type object
+object array defaults must returned
+factory function function receives raw
+props received component argument
+default rawprops
+return message hello
+
+
+custom validator function
+full props passed nd argument
+propf
+validator value props
+value must match one strings
+return success warning danger includes value
+
+
+function default value
+propg
+type function
+unlike object array default factory
+function function serve default value
+default
+return default function
+
+
+
+
+
+
+div
+
+additional details
+
+props optional default unless required true specified
+
+absent optional prop boolean undefined value
+
+boolean absent props cast false change setting default default undefined behave non boolean prop
+
+default value specified used resolved prop value undefined includes prop absent explicit undefined value passed
+
+prop validation fails vue produce console warning using development build
+
+div class composition api
+
+using type based props declarations api sfc script setup type props emit declarations sup class vt badge ts vue try best compile type annotations equivalent runtime prop declarations example defineprops msg string compiled msg type string required true
+
+div
+div class options api
+
+tip note
+note props validated component instance created instance properties data computed etc available inside default validator functions
+
+
+div
+
+runtime type checks runtime type checks
+
+type one following native constructors
+
+string
+number
+boolean
+array
+object
+date
+function
+symbol
+error
+
+addition type also custom class constructor function assertion made instanceof check example given following class
+
+js
+class person
+constructor firstname lastname
+firstname firstname
+lastname lastname
+
+
+
+
+could use prop type
+
+div class composition api
+
+js
+defineprops
+author person
+
+
+
+div
+div class options api
+
+js
+export default
+props
+author person
+
+
+
+
+div
+
+vue use instanceof person validate whether value author prop indeed instance person class
+
+boolean casting boolean casting
+
+props boolean type special casting rules mimic behavior native boolean attributes given mycomponent following declaration
+
+div class composition api
+
+js
+defineprops
+disabled boolean
+
+
+
+div
+div class options api
+
+js
+export default
+props
+disabled boolean
+
+
+
+
+div
+
+component used like
+
+vue html
+equivalent passing disabled true
+mycomponent disabled
+
+equivalent passing disabled false
+mycomponent
+
+
+prop declared allow multiple types casting rules boolean also applied however edge string boolean allowed boolean casting rule applies boolean appears string
+
+div class composition api
+
+js
+disabled casted true
+defineprops
+disabled boolean number
+
+
+disabled casted true
+defineprops
+disabled boolean string
+
+
+disabled casted true
+defineprops
+disabled number boolean
+
+
+disabled parsed empty string disabled
+defineprops
+disabled string boolean
+
+
+
+div
+div class options api
+
+js
+disabled casted true
+export default
+props
+disabled boolean number
+
+
+
+disabled casted true
+export default
+props
+disabled boolean string
+
+
+
+disabled casted true
+export default
+props
+disabled number boolean
+
+
+
+disabled parsed empty string disabled
+export default
+props
+disabled string boolean
+
+
+
+
+div
+
+outline deep
+
+
+server side rendering ssr server side rendering ssr
+
+overview overview
+
+ssr ssr
+
+vue js framework building client side applications default vue components produce manipulate dom browser output however also possible render components html strings server send directly browser finally hydrate static markup fully interactive app client
+
+server rendered vue js app also considered isomorphic universal sense majority app code runs server client
+
+ssr ssr
+
+compared client side single page application spa advantage ssr primarily lies
+
+faster time content prominent slow internet slow devices server rendered markup need wait javascript downloaded executed displayed user see fully rendered page sooner addition data fetching done server side initial visit likely faster connection database client generally results improved core web vitals metrics better user experience critical applications time content directly associated conversion rate
+
+unified mental model get use language declarative component oriented mental model developing entire app instead jumping back forth backend templating system frontend framework
+
+better seo search engine crawlers directly see fully rendered page
+
+tip
+google bing index synchronous javascript applications fine synchronous key word app starts loading spinner fetches content via ajax crawler wait finish means content fetched asynchronously pages seo important ssr might necessary
+
+
+also trade offs consider using ssr
+
+development constraints browser specific code used inside certain lifecycle hooks external libraries may need special treatment able run server rendered app
+
+involved build setup deployment requirements unlike fully static spa deployed static file server server rendered app requires environment node js server run
+
+server side load rendering full app node js going cpu intensive serving static files expect high traffic prepared corresponding server load wisely employ caching strategies
+
+using ssr app first question ask whether actually need mostly depends important time content app example building internal dashboard extra hundred milliseconds initial load matter much ssr would overkill however cases time content absolutely critical ssr help achieve best possible initial load performance
+
+ssr vs ssg ssr vs ssg
+
+static site generation ssg also referred pre rendering another popular technique building fast websites data needed server render page every user instead rendering page every time request comes render ahead time build process pre rendered pages generated served static html files
+
+ssg retains performance characteristics ssr apps provides great time content performance time cheaper easier deploy ssr apps output static html assets keyword static ssg applied pages consuming static data data known build time change deploys every time data changes new deployment needed
+
+investigating ssr improve seo handful marketing pages contact etc probably want ssg instead ssr ssg also great content based websites documentation sites blogs fact website reading right statically generated using vitepress vue powered static site generator
+
+basic tutorial basic tutorial
+
+rendering app rendering app
+
+let take look bare bones example vue ssr action
+
+create new directory cd
+run npm init
+add type module package json node js runs es modules mode
+run npm install vue
+create example js file
+
+js
+runs node js server
+import createssrapp vue
+vue server rendering api exposed vue server renderer
+import rendertostring vue server renderer
+
+const app createssrapp
+data count
+template button click count count button
+
+
+rendertostring app html
+console log html
+
+
+
+run
+
+sh
+node example js
+
+
+print following command line
+
+
+button button
+
+
+rendertostring api ssr rendertostring takes vue app instance returns promise resolves rendered html app also possible stream rendering using node js stream api web streams api check ssr api reference api ssr full details
+
+move vue ssr code server request handler wraps application markup full page html using express next steps
+
+run npm install express
+create following server js file
+
+js
+import express express
+import createssrapp vue
+import rendertostring vue server renderer
+
+const server express
+
+server get req res
+const app createssrapp
+data count
+template button click count count button
+
+
+rendertostring app html
+res send
+doctype html
+html
+head
+title vue ssr example title
+head
+body
+div id app html div
+body
+html
+
+
+
+
+server listen
+console log ready
+
+
+
+finally run node server js visit see page working button
+
+try stackblitz
+
+client hydration client hydration
+
+click button notice number change html completely static client since loading vue browser
+
+make client side app interactive vue needs perform hydration step hydration creates vue application run server matches component dom nodes control attaches dom event listeners
+
+mount app hydration mode need use createssrapp api application createssrapp instead createapp
+
+js
+runs browser
+import createssrapp vue
+
+const app createssrapp
+app server
+
+
+mounting ssr app client assumes
+html pre rendered perform
+hydration instead mounting new dom nodes
+app mount app
+
+
+code structure code structure
+
+notice need reuse app implementation server need start thinking code structure ssr app share application code server client
+
+demonstrate bare bones setup first let split app creation logic dedicated file app js
+
+js
+app js shared server client
+import createssrapp vue
+
+export function createapp
+return createssrapp
+data count
+template button click count count button
+
+
+
+
+file dependencies shared server client call universal code number things need pay attention writing universal code discuss writing ssr friendly code
+
+client entry imports universal code creates app performs mount
+
+js
+client js
+import createapp app js
+
+createapp mount app
+
+
+server uses app creation logic request handler
+
+js
+server js irrelevant code omitted
+import createapp app js
+
+server get req res
+const app createapp
+rendertostring app html
+
+
+
+
+
+addition order load client files browser also need
+
+serve client files adding server use express static server js
+load client entry adding script type module src client js script html shell
+support usage like import vue browser adding import map html shell
+
+try completed example stackblitz button interactive
+
+higher level solutions higher level solutions
+
+moving example production ready ssr app involves lot need
+
+support vue sfcs build step requirements fact need coordinate two builds app one client one server
+
+tip
+vue components compiled differently used ssr templates compiled string concatenations instead virtual dom render functions efficient rendering performance
+
+
+server request handler render html correct client side asset links optimal resource hints may also need switch ssr ssg mode even mix app
+
+manage routing data fetching state management stores universal manner
+
+complete implementation would quite complex depends build toolchain chosen work therefore highly recommend going higher level opinionated solution abstracts away complexity introduce recommended ssr solutions vue ecosystem
+
+nuxt nuxt
+
+nuxt higher level framework built top vue ecosystem provides streamlined development experience writing universal vue applications better yet also use static site generator highly recommend giving try
+
+quasar quasar
+
+quasar complete vue based solution allows target spa ssr pwa mobile app desktop app browser extension using one codebase handles build setup also provides full collection material design compliant ui components
+
+vite ssr vite ssr
+
+vite provides built support vue server side rendering intentionally low level wish go directly vite check vite plugin ssr community plugin abstracts away many challenging details
+
+also find example vue vite ssr project using manual setup serve base build upon note recommended experienced ssr build tools really want complete control higher level architecture
+
+writing ssr friendly code writing ssr friendly code
+
+regardless build setup higher level framework choice principles apply vue ssr applications
+
+reactivity server reactivity server
+
+ssr request url maps desired state application user interaction dom updates reactivity unnecessary server default reactivity disabled ssr better performance
+
+component lifecycle hooks component lifecycle hooks
+
+since dynamic updates lifecycle hooks span class options api mounted span span class composition api onmounted span span class options api updated span span class composition api onupdated span called ssr executed client span class options api hooks called ssr beforecreate created span
+
+avoid code produces side effects need cleanup span class options api beforecreate created span span class composition api setup root scope script setup span example side effects setting timers setinterval client side code may setup timer tear span class options api beforeunmount span span class composition api onbeforeunmount span span class options api unmounted span span class composition api onunmounted span however unmount hooks never called ssr timers stay around forever avoid move side effect code span class options api mounted span span class composition api onmounted span instead
+
+access platform specific apis access platform specific apis
+
+universal code cannot assume access platform specific apis code directly uses browser globals like window document throw errors executed node js vice versa
+
+tasks shared server client different platform apis recommended wrap platform specific implementations inside universal api use libraries example use node fetch use fetch api server client
+
+browser apis common approach lazily access inside client lifecycle hooks span class options api mounted span span class composition api onmounted span
+
+note third party library written universal usage mind could tricky integrate server rendered app might able get working mocking globals would hacky may interfere environment detection code libraries
+
+cross request state pollution cross request state pollution
+
+state management chapter introduced simple state management pattern using reactivity apis state management simple state management reactivity api ssr context pattern requires additional adjustments
+
+pattern declares shared state javascript module root scope makes singletons one instance reactive object throughout entire lifecycle application works expected pure client side vue application since modules application initialized fresh browser page visit
+
+however ssr context application modules typically initialized server server boots module instances reused across multiple server requests singleton state objects mutate shared singleton state data specific one user accidentally leaked request another user call cross request state pollution
+
+technically initialize javascript modules request like browsers however initializing javascript modules costly would significantly affect server performance
+
+recommended solution create new instance entire application including router global stores request instead directly importing components provide shared state using app level provide guide components provide inject app level provide inject components need
+
+js
+app js shared server client
+import createssrapp vue
+import createstore store js
+
+called request
+export function createapp
+const app createssrapp
+create new instance store per request
+const store createstore
+provide store app level
+app provide store store
+also expose store hydration purposes
+return app store
+
+
+
+state management libraries like pinia designed mind consult pinia ssr guide details
+
+hydration mismatch hydration mismatch
+
+dom structure pre rendered html match expected output client side app hydration mismatch error hydration mismatch commonly introduced following causes
+
+template contains invalid html nesting structure rendered html got corrected browser native html parsing behavior example common gotcha div cannot placed inside
+
+html
+div hi div
+
+
+produce server rendered html browser terminate first div encountered parse following dom structure
+
+html
+
+div hi div
+
+
+
+data used render contains randomly generated values since application run twice server client random values guaranteed two runs two ways avoid random value induced mismatches
+
+use onmounted render part depends random values client framework may also built features make easier example clientonly component vitepress
+
+use random number generator library supports generating seeds guarantee server run client run using seed including seed serialized state retrieving client
+
+server client different time zones sometimes may want convert timestamp user local time however timezone server run timezone client run always may reliably know user timezone server run cases local time conversion also performed client operation
+
+vue encounters hydration mismatch attempt automatically recover adjust pre rendered dom match client side state lead rendering performance loss due incorrect nodes discarded new nodes mounted cases app continue work expected said still best eliminate hydration mismatches development
+
+custom directives custom directives
+
+since custom directives involve direct dom manipulation ignored ssr however want specify custom directive rendered attributes add rendered element use getssrprops directive hook
+
+js
+const mydirective
+mounted el binding
+client side implementation
+directly update dom
+el id binding value
+
+getssrprops binding
+server side implementation
+return props rendered
+getssrprops receives directive binding
+return
+id binding value
+
+
+
+
+
+teleports teleports
+
+teleports require special handling ssr rendered app contains teleports teleported content part rendered string easier solution conditionally render teleport mount
+
+need hydrate teleported content exposed teleports property ssr context object
+
+js
+const ctx
+const html await rendertostring app ctx
+
+console log ctx teleports teleported teleported content
+
+
+need inject teleport markup correct location final page html similar need inject main app markup
+
+tip
+avoid targeting body using teleports ssr together usually body contain server rendered content makes impossible teleports determine correct starting location hydration
+
+instead prefer dedicated container div id teleported div contains teleported content
+
+glossary glossary
+
+glossary intended provide guidance meanings technical terms common usage talking vue intended descriptive terms commonly used prescriptive specification must used terms may slightly different meanings nuances depending surrounding context
+
+toc
+
+async component async component
+
+async component wrapper around another component allows wrapped component lazy loaded typically used way reduce size built js files allowing split smaller chunks loaded required
+
+vue router similar feature lazy loading route components though use vue async components feature
+
+details see
+guide async components guide components async html
+
+compiler macro compiler macro
+
+compiler macro special code processed compiler converted something else effectively clever form string replacement
+
+vue sfc single file component compiler supports various macros defineprops defineemits defineexpose macros intentionally designed look like normal javascript functions leverage parser type inference tooling around javascript typescript however actual functions run browser special strings compiler detects replaces real javascript code actually run
+
+macros limitations use apply normal javascript code example might think const dp defineprops would allow create alias defineprops actually result error also limitations values passed defineprops arguments processed compiler runtime
+
+details see
+script setup defineprops defineemits api sfc script setup html defineprops defineemits
+script setup defineexpose api sfc script setup html defineexpose
+
+component component
+
+term component unique vue common many ui frameworks describes chunk ui button checkbox components also combined form larger components
+
+components primary mechanism provided vue split ui smaller pieces improve maintainability allow code reuse
+
+vue component object properties optional either template render function required component render example following object would valid component
+
+js
+const helloworldcomponent
+render
+return hello world
+
+
+
+
+practice vue applications written using single file components single file component vue files components may appear objects first glance sfc compiler convert object used default export file external perspective vue file es module exports component object
+
+properties component object usually referred options options api options api gets name
+
+options component define instances component created components conceptually similar classes though vue use actual javascript classes define
+
+term component also used loosely refer component instances
+
+details see
+guide component basics guide essentials component basics html
+
+word component also features several terms
+async component async component
+dynamic component dynamic component
+functional component functional component
+web component web component
+
+composable composable
+
+term composable describes common usage pattern vue separate feature vue way using framework composition api composition api
+
+composable function
+composables used encapsulate reuse stateful logic
+function name usually begins use developers know composable
+function typically expected called synchronous execution component setup function equivalently execution script setup block ties invocation composable current component context via calls provide inject onmounted
+composables typically return plain object reactive object object usually contains refs functions expected destructured within calling code
+
+many patterns disagreement whether specific code qualifies label javascript utility functions composables function use composition api probably composable expect called synchronous execution setup probably composable composables specifically used encapsulate stateful logic naming convention functions
+
+see guide composables guide reusability composables html details writing composables
+
+composition api composition api
+
+composition api collection functions used write components composables vue
+
+term also used describe one two main styles used write components options api options api components written using composition api use either script setup explicit setup function
+
+see composition api faq guide extras composition api faq details
+
+custom element custom element
+
+custom element feature web components web component standard implemented modern web browsers refers ability use custom html element html markup include web component point page
+
+vue built support rendering custom elements allows used directly vue component templates
+
+custom elements confused ability include vue components tags within another vue component template custom elements used create web components vue components
+
+details see
+guide vue web components guide extras web components html
+
+directive directive
+
+term directive refers template attributes beginning prefix equivalent shorthands
+
+built directives include bind slot
+
+vue also supports creating custom directives though typically used escape hatch manipulating dom nodes directly custom directives generally used recreate functionality built directives
+
+details see
+guide template syntax directives guide essentials template syntax html directives
+guide custom directives guide reusability custom directives html
+
+dynamic component dynamic component
+
+term dynamic component used describe cases choice child component render needs made dynamically typically achieved using component type
+
+dynamic component special type component component used dynamic component choice component dynamic rather component
+
+details see
+guide components basics dynamic components guide essentials component basics html dynamic components
+
+effect effect
+
+see reactive effect reactive effect side effect side effect
+
+event event
+
+use events communicating different parts program common many different areas programming within vue term commonly applied native html element events vue component events directive used templates listen types event
+
+details see
+guide event handling guide essentials event handling html
+guide component events guide components events html
+
+fragment fragment
+
+term fragment refers special type vnode vnode used parent vnodes render elements
+
+name comes similar concept documentfragment native dom api
+
+fragments used support components multiple root nodes components might appear multiple roots behind scenes use fragment node single root parent root nodes
+
+fragments also used template compiler way wrap multiple dynamic nodes created via allows extra hints passed vdom virtual dom patching algorithm much handled internally one place may encounter directly using key template tag scenario key added prop prop fragment vnode
+
+fragment nodes currently rendered dom empty text nodes though implementation detail may encounter text nodes use el attempt walk dom built browser apis
+
+functional component functional component
+
+component definition usually object containing options may appear way using script setup component exported vue file still object
+
+functional component alternative form component declared using function instead function acts render function render function component
+
+functional component cannot state also go usual component lifecycle lifecycle hooks used makes slightly lighter normal stateful components
+
+details see
+guide render functions jsx functional components guide extras render function html functional components
+
+hoisting hoisting
+
+term hoisting used describe running section code reached ahead code execution pulled earlier point
+
+javascript uses hoisting constructs var import function declarations
+
+vue context template compiler applies static hoisting improve performance converting template render function vnodes correspond static content created reused static vnodes described hoisted created outside render function runs similar form hoisting applied static objects arrays generated template compiler
+
+details see
+guide rendering mechanism static hoisting guide extras rendering mechanism html static hoisting
+
+dom template dom template
+
+various ways specify template component cases template provided string
+
+term dom template refers scenario template provided form dom nodes instead string vue converts dom nodes template string using innerhtml
+
+typically dom template starts html markup written directly html page browser parses dom nodes vue uses read innerhtml
+
+details see
+guide creating application dom root component template guide essentials application html dom root component template
+guide component basics dom template parsing caveats guide essentials component basics html dom template parsing caveats
+options rendering template api options rendering html template
+
+inject inject
+
+see provide inject provide inject
+
+lifecycle hooks lifecycle hooks
+
+vue component instance goes lifecycle example created mounted updated unmounted
+
+lifecycle hooks way listen lifecycle events
+
+options api hook provided separate option mounted composition api uses functions instead onmounted
+
+details see
+guide lifecycle hooks guide essentials lifecycle html
+
+macro macro
+
+see compiler macro compiler macro
+
+named slot named slot
+
+component multiple slots differentiated name slots default slot referred named slots
+
+details see
+guide slots named slots guide components slots html named slots
+
+options api options api
+
+vue components defined using objects properties component objects known options
+
+components written two styles one style uses composition api composition api conjunction setup either via setup option script setup style makes little direct use composition api instead using various component options achieve similar result component options used way referred options api
+
+options api includes options data computed methods created
+
+options props emits inheritattrs used authoring components either api component options could considered part options api however options also used conjunction setup usually useful think shared two component styles
+
+setup function component option could described part options api however term options api normally used instead setup function considered part composition api
+
+plugin plugin
+
+term plugin used wide variety contexts vue specific concept plugin way add functionality application
+
+plugins added application calling app use plugin plugin either function object install function function passed application instance whatever needs
+
+details see
+guide plugins guide reusability plugins html
+
+prop prop
+
+three common uses term prop vue
+
+component props
+vnode props
+slot props
+
+component props people think props explicitly defined component using either defineprops props option
+
+term vnode props refers properties object passed second argument include component props also include component events dom events dom attributes dom properties usually encounter vnode props working render functions manipulate vnodes directly
+
+slot props properties passed scoped slot
+
+cases props properties passed elsewhere
+
+word props derived word properties term props much specific meaning context vue avoid using abbreviation properties
+
+details see
+guide props guide components props html
+guide render functions jsx guide extras render function html
+guide slots scoped slots guide components slots html scoped slots
+
+provide inject provide inject
+
+provide inject form inter component communication
+
+component provides value descendants component choose grab value using inject unlike props providing component know precisely component receiving value
+
+provide inject sometimes used avoid prop drilling also used implicit way component communicate slot contents
+
+provide also used application level making value available components within application
+
+details see
+guide provide inject guide components provide inject html
+
+reactive effect reactive effect
+
+reactive effect part vue reactivity system refers process tracking dependencies function running function values dependencies change
+
+watcheffect direct way create effect various parts vue use effects internally component rendering updates computed watch
+
+vue track reactive dependencies within reactive effect property value read outside reactive effect lose reactivity sense vue know property subsequently changes
+
+term derived side effect calling effect function side effect property value changed
+
+details see
+guide reactivity depth guide extras reactivity depth html
+
+reactivity reactivity
+
+general reactivity refers ability automatically perform actions response data changes example updating dom making network request data value changes
+
+vue context reactivity used describe collection features features combine form reactivity system exposed via reactivity api reactivity api
+
+various different ways reactivity system could implemented example could done static analysis code determine dependencies however vue employ form reactivity system
+
+instead vue reactivity system tracks property access runtime using proxy wrappers getter setter functions properties
+
+details see
+guide reactivity fundamentals guide essentials reactivity fundamentals html
+guide reactivity depth guide extras reactivity depth html
+
+reactivity api reactivity api
+
+reactivity api collection core vue functions related reactivity reactivity used independently components includes functions ref reactive computed watch watcheffect
+
+reactivity api subset composition api
+
+details see
+reactivity api core api reactivity core html
+reactivity api utilities api reactivity utilities html
+reactivity api advanced api reactivity advanced html
+
+ref ref
+
+entry use ref reactivity ref attribute used templates see template ref template ref instead
+
+ref part vue reactivity system object single reactive property called value
+
+various different types ref example refs created using ref shallowref computed customref function isref used check whether object ref isreadonly used check whether ref allows direct reassignment value
+
+details see
+guide reactivity fundamentals guide essentials reactivity fundamentals html
+reactivity api core api reactivity core html
+reactivity api utilities api reactivity utilities html
+reactivity api advanced api reactivity advanced html
+
+render function render function
+
+render function part component generates vnodes used rendering templates compiled render functions
+
+details see
+guide render functions jsx guide extras render function html
+
+scheduler scheduler
+
+scheduler part vue internals controls timing reactive effects reactive effect run
+
+reactive state changes vue immediately trigger rendering updates instead batches together using queue ensures component renders even multiple changes made underlying data
+
+watchers guide essentials watchers html also batched using scheduler queue watchers flush pre default run component rendering whereas flush post run component rendering
+
+jobs scheduler also used perform various internal tasks triggering lifecycle hooks lifecycle hooks updating template refs template ref
+
+scoped slot scoped slot
+
+term scoped slot used refer slot slot receives props prop
+
+historically vue made much greater distinction scoped non scoped slots extent could regarded two separate features unified behind common template syntax
+
+vue slot apis simplified make slots behave like scoped slots however use cases scoped non scoped slots often differ term still proves useful way refer slots props
+
+props passed slot used within specific region parent template responsible defining slot contents region template behaves variable scope props hence name scoped slot
+
+details see
+guide slots scoped slots guide components slots html scoped slots
+
+sfc sfc
+
+see single file component single file component
+
+side effect side effect
+
+term side effect specific vue used describe operations functions something beyond local scope
+
+example context setting property like user name null expected change value user name also something else like triggering vue reactivity system would described side effect origin term reactive effect reactive effect within vue
+
+function described side effects means function performs sort action observable outside function aside returning value might mean updates value state triggers network request
+
+term often used describing rendering computed properties considered best practice rendering side effects likewise getter function computed property side effects
+
+single file component single file component
+
+term single file component sfc refers vue file format commonly used vue components
+
+see also
+guide single file components guide scaling sfc html
+sfc syntax specification api sfc spec html
+
+slot slot
+
+slots used pass content child components whereas props used pass data values slots used pass richer content consisting html elements vue components
+
+details see
+guide slots guide components slots html
+
+template ref template ref
+
+term template ref refers using ref attribute tag within template component renders attribute used populate corresponding property either html element component instance corresponds tag template
+
+using options api refs exposed via properties refs object
+
+composition api template refs populate reactive ref ref name
+
+template refs confused reactive refs found vue reactivity system
+
+details see
+guide template refs guide essentials template refs html
+
+vdom vdom
+
+see virtual dom virtual dom
+
+virtual dom virtual dom
+
+term virtual dom vdom unique vue common approach used several web frameworks managing updates ui
+
+browsers use tree nodes represent current state page tree javascript apis used interact referred document object model dom
+
+manipulating dom major performance bottleneck virtual dom provides one strategy managing
+
+rather creating dom nodes directly vue components generate description dom nodes would like descriptors plain javascript objects known vnodes virtual dom nodes creating vnodes relatively cheap
+
+every time component renders new tree vnodes compared previous tree vnodes differences applied real dom nothing changed dom need touched
+
+vue uses hybrid approach call compiler informed virtual dom guide extras rendering mechanism html compiler informed virtual dom vue template compiler able apply performance optimizations based static analysis template rather performing full comparison component old new vnode trees runtime vue use information extracted compiler reduce comparison parts tree actually change
+
+details see
+guide rendering mechanism guide extras rendering mechanism html
+guide render functions jsx guide extras render function html
+
+vnode vnode
+
+vnode virtual dom node created using api render function html function
+
+see virtual dom virtual dom information
+
+web component web component
+
+web components standard collection features implemented modern web browsers
+
+vue components web components definecustomelement used create custom element custom element vue component vue also supports use custom elements inside vue components
+
+details see
+guide vue web components guide extras web components html
+component model component model
+
+basic usage basic usage
+
+model used component implement two way binding
+
+div class composition api
+
+starting vue recommended approach achieve using definemodel api sfc script setup definemodel macro
+
+vue
+child vue
+script setup
+const model definemodel
+
+function update
+model value
+
+script
+
+template
+div parent bound model model div
+template
+
+
+parent bind value model
+
+vue html
+parent vue
+child model countmodel
+
+
+value returned definemodel ref accessed mutated like ref except acts two way binding parent value local one
+
+value synced value bound parent model
+mutated child causes parent bound value updated well
+
+means also bind ref native input element model making straightforward wrap native input elements providing model usage
+
+vue
+script setup
+const model definemodel
+script
+
+template
+input model model
+template
+
+
+playground example
+
+hood hood
+
+definemodel convenience macro compiler expands following
+
+prop named modelvalue local ref value synced
+event named update modelvalue emitted local ref value mutated
+
+would implement child component shown prior
+
+vue
+script setup
+const props defineprops modelvalue
+const emit defineemits update modelvalue
+script
+
+template
+input
+value props modelvalue
+input emit update modelvalue event target value
+
+template
+
+
+see quite bit verbose however helpful understand happening hood
+
+definemodel declares prop therefore declare underlying prop options passing definemodel
+
+js
+making model required
+const model definemodel required true
+
+providing default value
+const model definemodel default
+
+
+warning
+default value definemodel prop provide value prop parent component cause de synchronization parent child components example parent myref undefined child model
+
+js
+child component
+const model definemodel default
+
+parent component
+const myref ref
+
+
+html
+child model myref child
+
+
+
+
+div
+
+div class options api
+
+first let revisit model used native element
+
+vue html
+input model searchtext
+
+
+hood template compiler expands model verbose equivalent us code following
+
+vue html
+input
+value searchtext
+input searchtext event target value
+
+
+
+used component model instead expands
+
+vue html
+custominput
+model value searchtext
+update model value newvalue searchtext newvalue
+
+
+
+actually work though custominput component must two things
+
+bind value attribute native input element modelvalue prop
+native input event triggered emit update modelvalue custom event new value
+
+action
+
+vue
+custominput vue
+script
+export default
+props modelvalue
+emits update modelvalue
+
+script
+
+template
+input
+value modelvalue
+input emit update modelvalue event target value
+
+template
+
+
+model work perfectly component
+
+vue html
+custominput model searchtext
+
+
+try playground
+
+another way implementing model within component use writable computed property getter setter get method return modelvalue property set method emit corresponding event
+
+vue
+custominput vue
+script
+export default
+props modelvalue
+emits update modelvalue
+computed
+value
+get
+return modelvalue
+
+set value
+emit update modelvalue value
+
+
+
+
+script
+
+template
+input model value
+template
+
+
+div
+
+model arguments model arguments
+
+model component also accept argument
+
+vue html
+mycomponent model title booktitle
+
+
+div class composition api
+
+child component support corresponding argument passing string definemodel first argument
+
+vue
+mycomponent vue
+script setup
+const title definemodel title
+script
+
+template
+input type text model title
+template
+
+
+try playground
+
+prop options also needed passed model name
+
+js
+const title definemodel title required true
+
+
+details
+summary pre usage summary
+
+vue
+mycomponent vue
+script setup
+defineprops
+title
+required true
+
+
+defineemits update title
+script
+
+template
+input
+type text
+value title
+input emit update title event target value
+
+template
+
+
+try playground
+
+details
+div
+div class options api
+
+case instead default modelvalue prop update modelvalue event child component expect title prop emit update title event update parent value
+
+vue
+mycomponent vue
+script
+export default
+props title
+emits update title
+
+script
+
+template
+input
+type text
+value title
+input emit update title event target value
+
+template
+
+
+try playground
+
+div
+
+multiple model bindings multiple model bindings
+
+leveraging ability target particular prop event learned model arguments model arguments create multiple model bindings single component instance
+
+model sync different prop without need extra options component
+
+vue html
+username
+model first name first
+model last name last
+
+
+
+div class composition api
+
+vue
+script setup
+const firstname definemodel firstname
+const lastname definemodel lastname
+script
+
+template
+input type text model firstname
+input type text model lastname
+template
+
+
+try playground
+
+details
+summary pre usage summary
+
+vue
+script setup
+defineprops
+firstname string
+lastname string
+
+
+defineemits update firstname update lastname
+script
+
+template
+input
+type text
+value firstname
+input emit update firstname event target value
+
+input
+type text
+value lastname
+input emit update lastname event target value
+
+template
+
+
+try playground
+
+details
+div
+div class options api
+
+vue
+script
+export default
+props
+firstname string
+lastname string
+
+emits update firstname update lastname
+
+script
+
+template
+input
+type text
+value firstname
+input emit update firstname event target value
+
+input
+type text
+value lastname
+input emit update lastname event target value
+
+template
+
+
+try playground
+
+div
+
+handling model modifiers handling model modifiers
+
+learning form input bindings saw model built modifiers guide essentials forms modifiers trim number lazy cases might also want model custom input component support custom modifiers
+
+let create example custom modifier capitalize capitalizes first letter string provided model binding
+
+vue html
+mycomponent model capitalize mytext
+
+
+div class composition api
+
+modifiers added component model accessed child component destructuring definemodel return value like
+
+vue
+script setup
+const model modifiers definemodel
+
+console log modifiers capitalize true
+script
+
+template
+input type text model model
+template
+
+
+conditionally adjust value read written based modifiers pass get set options definemodel two options receive value get set model ref return transformed value use set option implement capitalize modifier
+
+vue
+script setup
+const model modifiers definemodel
+set value
+modifiers capitalize
+return value charat touppercase value slice
+
+return value
+
+
+script
+
+template
+input type text model model
+template
+
+
+try playground
+
+details
+summary pre usage summary
+
+vue
+script setup
+const props defineprops
+modelvalue string
+modelmodifiers default
+
+
+const emit defineemits update modelvalue
+
+function emitvalue
+let value target value
+props modelmodifiers capitalize
+value value charat touppercase value slice
+
+emit update modelvalue value
+
+script
+
+template
+input type text value modelvalue input emitvalue
+template
+
+
+try playground
+
+details
+div
+
+div class options api
+
+modifiers added component model provided component via modelmodifiers prop example created component contains modelmodifiers prop defaults empty object
+
+vue
+script
+export default
+props
+modelvalue string
+modelmodifiers
+default
+
+
+emits update modelvalue
+created
+console log modelmodifiers capitalize true
+
+
+script
+
+template
+input
+type text
+value modelvalue
+input emit update modelvalue event target value
+
+template
+
+
+notice component modelmodifiers prop contains capitalize value true due set model binding model capitalize mytext
+
+prop set check modelmodifiers object keys write handler change emitted value code capitalize string whenever input element fires input event
+
+vue
+script
+export default
+props
+modelvalue string
+modelmodifiers
+default
+
+
+emits update modelvalue
+methods
+emitvalue
+let value target value
+modelmodifiers capitalize
+value value charat touppercase value slice
+
+emit update modelvalue value
+
+
+
+script
+
+template
+input type text value modelvalue input emitvalue
+template
+
+
+try playground
+
+div
+
+modifiers model arguments modifiers model arguments
+
+div class options api
+
+model bindings argument modifiers generated prop name arg modifiers example
+
+vue html
+mycomponent model title capitalize mytext
+
+
+corresponding declarations
+
+js
+export default
+props title titlemodifiers
+emits update title
+created
+console log titlemodifiers capitalize true
+
+
+
+
+div
+
+another example using modifiers multiple model different arguments
+
+vue html
+username
+model first name capitalize first
+model last name uppercase last
+
+
+
+div class composition api
+
+vue
+script setup
+const firstname firstnamemodifiers definemodel firstname
+const lastname lastnamemodifiers definemodel lastname
+
+console log firstnamemodifiers capitalize true
+console log lastnamemodifiers uppercase true
+script
+
+
+details
+summary pre usage summary
+
+vue
+script setup
+const props defineprops
+firstname string
+lastname string
+firstnamemodifiers default
+lastnamemodifiers default
+
+defineemits update firstname update lastname
+
+console log props firstnamemodifiers capitalize true
+console log props lastnamemodifiers uppercase true
+script
+
+
+details
+div
+div class options api
+
+vue
+script
+export default
+props
+firstname string
+lastname string
+firstnamemodifiers
+default
+
+lastnamemodifiers
+default
+
+
+emits update firstname update lastname
+created
+console log firstnamemodifiers capitalize true
+console log lastnamemodifiers uppercase true
+
+
+script
+
+
+div
+code conduct code conduct
+
+pledge pledge
+
+interest fostering open welcoming environment contributors maintainers pledge making participation project community harassment free experience everyone regardless age body size disability ethnicity sex characteristics gender identity expression level experience education socio economic status nationality personal appearance race religion political party sexual identity orientation note however religion political party ideological affiliation provide exemptions behavior outline unacceptable code conduct
+
+standards standards
+
+examples behavior contributes creating positive environment include
+
+using welcoming inclusive language
+respectful differing viewpoints experiences
+gracefully accepting constructive criticism
+focusing best community
+showing empathy towards community members
+
+examples unacceptable behavior participants include
+
+use sexualized language imagery unwelcome sexual attention advances
+trolling insulting derogatory comments personal political attacks
+public private harassment
+publishing others private information physical electronic address without explicit permission
+conduct could reasonably considered inappropriate professional setting
+
+responsibilities responsibilities
+
+project maintainers responsible clarifying standards acceptable behavior expected take appropriate fair corrective action response instances unacceptable behavior
+
+project maintainers right responsibility remove edit reject comments commits code wiki edits issues contributions aligned code conduct ban temporarily permanently contributor behaviors deem inappropriate threatening offensive harmful
+
+scope scope
+
+code conduct applies within project spaces public spaces individual representing project community examples representing project community include using official project mail address posting via official social media account acting appointed representative online offline event representation project may defined clarified project maintainers
+
+enforcement enforcement
+
+instances abusive harassing otherwise unacceptable behavior may reported contacting project team community vuejs org complaints reviewed investigated result response deemed necessary appropriate circumstances project team obligated maintain confidentiality regard reporter incident details specific enforcement policies may posted separately
+
+project maintainers follow enforce code conduct good faith may face temporary permanent repercussions determined members project leadership
+
+attribution attribution
+
+code conduct adapted contributor covenant homepage version available
+
+answers common questions code conduct see
+
+homepage
+
+outline deep
+
+
+style guide style guide
+
+official style guide vue specific code use vue project great reference avoid errors bikeshedding anti patterns however believe style guide ideal teams projects mindful deviations encouraged based past experience surrounding tech stack personal values
+
+part also avoid suggestions javascript html general mind whether use semicolons trailing commas mind whether html uses single quotes double quotes attribute values exceptions exist however found particular pattern helpful context vue
+
+finally split rules four categories
+
+rule categories rule categories
+
+priority essential error prevention priority essential error prevention
+
+rules help prevent errors learn abide costs exceptions may exist rare made expert knowledge javascript vue
+
+see priority rules rules essential
+
+priority strongly recommended priority strongly recommended
+
+rules found improve readability developer experience projects code still run violate violations rare well justified
+
+see priority rules rules strongly recommended
+
+priority recommended priority recommended
+
+multiple equally good options exist arbitrary choice made ensure consistency rules describe acceptable option suggest default choice means feel free make different choice codebase long consistent good reason please good reason though adapting community standard
+
+train brain easily parse community code encounter
+able copy paste community code examples without modification
+often find new hires already accustomed preferred coding style least regards vue
+
+see priority rules rules recommended
+
+priority use caution priority use caution
+
+features vue exist accommodate rare edge cases smoother migrations legacy code base overused however make code difficult maintain even become source bugs rules shine light potentially risky features describing avoided
+
+see priority rules rules use caution
+frequently asked questions frequently asked questions
+
+maintains vue maintains vue
+
+vue independent community driven project created evan personal side project today vue actively maintained team full time volunteer members around world team evan serves project lead learn story vue documentary
+
+vue development primarily funded sponsorships financially sustainable since business benefit vue consider sponsoring us sponsor support vue development
+
+difference vue vue difference vue vue
+
+vue current latest major version vue contains new features present vue teleport suspense multiple root elements per template also contains breaking changes make incompatible vue full details documented vue migration guide
+
+despite differences majority vue apis shared two major versions vue knowledge continue work vue notably composition api originally vue feature backported vue available vue
+
+general vue provides smaller bundle sizes better performance better scalability better typescript ide support starting new project today vue recommended choice reasons consider vue
+
+need support ie vue leverages modern javascript features support ie
+
+intend migrate existing vue app vue consult migration guide
+
+vue still supported vue still supported
+
+vue shipped july final minor release vue version range vue entered maintenance mode longer ship new features continue receive critical bug fixes security updates months starting release date means vue reach end life december st
+
+believe provide plenty time ecosystem migrate vue however also understand could teams projects cannot upgrade timeline still needing fulfill security compliance requirements partnering industry experts provide extended support vue teams needs team expects using vue beyond end make sure plan ahead learn vue extended lts
+
+license vue use license vue use
+
+vue free open source project released mit license
+
+browsers vue support browsers vue support
+
+latest version vue supports browsers native es support excludes ie vue uses es features cannot polyfilled legacy browsers need support legacy browsers need use vue instead
+
+vue reliable vue reliable
+
+vue mature battle tested framework one widely used javascript frameworks production today million users worldwide downloaded close million times month npm
+
+vue used production renowned organizations varying capacities around world including wikimedia foundation nasa apple google microsoft gitlab zoom tencent weibo bilibili kuaishou many
+
+vue fast vue fast
+
+vue one performant mainstream frontend frameworks handles web application use cases ease without need manual optimizations
+
+stress testing scenarios vue outperforms react angular decent margin js framework benchmark also goes neck neck fastest production level non virtual dom frameworks benchmark
+
+note synthetic benchmarks like focus raw rendering performance dedicated optimizations may fully representative real world performance results care page load performance welcome audit website using webpagetest pagespeed insights website powered vue ssg pre rendering full page hydration spa client side navigation scores performance emulated moto cpu throttling slow networks
+
+learn vue automatically optimizes runtime performance rendering mechanism guide extras rendering mechanism section optimize vue app particularly demanding cases performance optimization guide guide best practices performance
+
+vue lightweight vue lightweight
+
+use build tool many vue apis tree shakable example use built transition component included final production bundle
+
+hello world vue app uses absolutely minimal apis baseline size around kb minification brotli compression actual size application depend many optional features use framework unlikely case app uses every single feature vue provides total runtime size around kb
+
+using vue without build tool lose tree shaking also ship template compiler browser bloats size around kb therefore using vue primarily progressive enhancement without build step consider using petite vue kb instead
+
+frameworks svelte use compilation strategy produces extremely lightweight output single component scenarios however research shows size difference heavily depends number components application vue heavier baseline size generates less code per component real world scenarios vue app may well end lighter
+
+vue scale vue scale
+
+yes despite common misconception vue suitable simple use cases vue perfectly capable handling large scale applications
+
+single file components guide scaling sfc provide modularized development model allows different parts application developed isolation
+
+composition api guide reusability composables provides first class typescript integration enables clean patterns organizing extracting reusing complex logic
+
+comprehensive tooling support guide scaling tooling ensures smooth development experience application grows
+
+lower barrier entry excellent documentation translate lower onboarding training costs new developers
+
+contribute vue contribute vue
+
+appreciate interest please check community guide community guide
+
+use options api composition api use options api composition api
+
+new vue provide high level comparison two styles guide introduction choose
+
+previously used options api currently evaluating composition api check faq guide extras composition api faq
+
+use javascript typescript vue use javascript typescript vue
+
+vue implemented typescript provides first class typescript support enforce opinion whether use typescript user
+
+typescript support important consideration new features added vue apis designed typescript mind typically easier ides linters understand even using typescript everybody wins vue apis also designed work way javascript typescript much possible
+
+adopting typescript involves trade onboarding complexity long term maintainability gains whether trade justified vary depending team background project scale vue really influencing factor making decision
+
+vue compare web components vue compare web components
+
+vue created web components natively available aspects vue design slots inspired web components model
+
+web components specs relatively low level centered around defining custom elements framework vue addresses additional higher level concerns efficient dom rendering reactive state management tooling client side routing server side rendering
+
+vue also fully supports consuming exporting native custom elements check vue web components guide guide extras web components details
+
+todo vue compare react
+
+todo vue compare angular
+
+outline deep
+
+
+fallthrough attributes fallthrough attributes
+
+page assumes already read components basics guide essentials component basics read first new components
+
+attribute inheritance attribute inheritance
+
+fallthrough attribute attribute event listener passed component explicitly declared receiving component props props emits events declaring emitted events common examples include class style id attributes
+
+component renders single root element fallthrough attributes automatically added root element attributes example given mybutton component following template
+
+vue html
+template mybutton
+button click button
+
+
+parent using component
+
+vue html
+mybutton class large
+
+
+final rendered dom would
+
+html
+button class large click button
+
+
+mybutton declare class accepted prop therefore class treated fallthrough attribute automatically added mybutton root element
+
+class style merging class style merging
+
+child component root element already existing class style attributes merged class style values inherited parent suppose change template mybutton previous example
+
+vue html
+template mybutton
+button class btn click button
+
+
+final rendered dom would become
+
+html
+button class btn large click button
+
+
+listener inheritance listener inheritance
+
+rule applies event listeners
+
+vue html
+mybutton click onclick
+
+
+click listener added root element mybutton native button element native button clicked trigger onclick method parent component native button already click listener bound listeners trigger
+
+nested component inheritance nested component inheritance
+
+component renders another component root node example refactored mybutton render basebutton root
+
+vue html
+template mybutton simply renders another component
+basebutton
+
+
+fallthrough attributes received mybutton automatically forwarded basebutton
+
+note
+
+forwarded attributes include attributes declared props listeners declared events mybutton words declared props listeners consumed mybutton
+
+forwarded attributes may accepted props basebutton declared
+
+disabling attribute inheritance disabling attribute inheritance
+
+want component automatically inherit attributes set inheritattrs false component options
+
+div class composition api
+
+since also use defineoptions api sfc script setup defineoptions directly script setup
+
+vue
+script setup
+defineoptions
+inheritattrs false
+
+setup logic
+script
+
+
+div
+
+common scenario disabling attribute inheritance attributes need applied elements besides root node setting inheritattrs option false take full control fallthrough attributes applied
+
+fallthrough attributes accessed directly template expressions attrs
+
+vue html
+span fallthrough attributes attrs span
+
+
+attrs object includes attributes declared component props emits options class style listeners etc
+
+notes
+
+unlike props fallthrough attributes preserve original casing javascript attribute like foo bar needs accessed attrs foo bar
+
+event listener like click exposed object function attrs onclick
+
+using mybutton component example previous section attribute inheritance sometimes may need wrap actual button element extra div styling purposes
+
+vue html
+div class btn wrapper
+button class btn click button
+div
+
+
+want fallthrough attributes like class listeners applied inner button outer div achieve inheritattrs false bind attrs
+
+vue html
+div class btn wrapper
+button class btn bind attrs click button
+div
+
+
+remember bind without argument guide essentials template syntax dynamically binding multiple attributes binds properties object attributes target element
+
+attribute inheritance multiple root nodes attribute inheritance multiple root nodes
+
+unlike components single root node components multiple root nodes automatic attribute fallthrough behavior attrs bound explicitly runtime warning issued
+
+vue html
+customlayout id custom layout click changevalue
+
+
+customlayout following multi root template warning vue cannot sure apply fallthrough attributes
+
+vue html
+header header
+main main
+footer footer
+
+
+warning suppressed attrs explicitly bound
+
+vue html
+header header
+main bind attrs main
+footer footer
+
+
+accessing fallthrough attributes javascript accessing fallthrough attributes javascript
+
+div class composition api
+
+needed access component fallthrough attributes script setup using useattrs api
+
+vue
+script setup
+import useattrs vue
+
+const attrs useattrs
+script
+
+
+using script setup attrs exposed property setup context
+
+js
+export default
+setup props ctx
+fallthrough attributes exposed ctx attrs
+console log ctx attrs
+
+
+
+
+note although attrs object always reflects latest fallthrough attributes reactive performance reasons cannot use watchers observe changes need reactivity use prop alternatively use onupdated perform side effects latest attrs update
+
+div
+
+div class options api
+
+needed access component fallthrough attributes via attrs instance property
+
+js
+export default
+created
+console log attrs
+
+
+
+
+div
