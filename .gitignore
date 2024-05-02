@@ -2,3 +2,8 @@
 .DS_Store
 .venv
 *.zip
+runs/*
+cuda-*
+yolov8n.pt
+data/plane_sat_cv/yolo/*
+data/plane_sat_cv/split_data/
